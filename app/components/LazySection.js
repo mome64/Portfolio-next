@@ -9,6 +9,7 @@ const LazySection = ({
   threshold = 0.1,
   triggerOnce = true,
   animation = "fade",
+  compact = false,
   ...props
 }) => {
   const [ref, inView] = useInView({
@@ -41,10 +42,14 @@ const LazySection = ({
 
   const selectedAnimation = animations[animation] || animations.fade;
 
+  const combinedClassName = compact
+    ? `${className} compact-section`
+    : className;
+
   return (
     <motion.div
       ref={ref}
-      className={className}
+      className={combinedClassName}
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
       variants={selectedAnimation}

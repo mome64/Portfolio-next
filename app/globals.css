@@ -28,14 +28,16 @@
   --color-accent: var(--accent);
   --color-neutral-light: var(--neutral-light);
   --color-neutral-dark: var(--neutral-dark);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.6;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -57,6 +59,16 @@ body {
 /* Tight section for content-dense areas */
 .tight-section {
   @apply py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto;
+}
+
+/* Compact section for minimized spacing between components */
+.compact-section {
+  @apply py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto;
+}
+
+/* Extra compact section for maximum space reduction */
+.extra-compact-section {
+  @apply py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto;
 }
 
 /* New standardized spacing system */
@@ -100,11 +112,11 @@ body {
 }
 
 .portfolio-btn-primary {
-  @apply bg-primary text-white hover:bg-primary-dark focus:ring-primary shadow-md hover:shadow-lg;
+  @apply bg-primary text-white hover:bg-primary-dark focus:ring-primary shadow-md hover:shadow-lg transform hover:-translate-y-0.5;
 }
 
 .portfolio-btn-secondary {
-  @apply bg-secondary text-foreground hover:bg-secondary/80 focus:ring-secondary border border-secondary;
+  @apply bg-secondary text-foreground hover:bg-secondary/80 focus:ring-secondary border border-secondary shadow-sm hover:shadow-md transform hover:-translate-y-0.5;
 }
 
 .portfolio-btn-minimal {
@@ -257,23 +269,218 @@ html {
   @apply hover:-translate-y-1 transition-all duration-300;
 }
 
-/* Consistent text sizes */
+/* Consistent text sizes with improved typography */
 .text-primary-heading {
-  @apply text-3xl md:text-4xl font-bold;
+  @apply text-3xl md:text-4xl font-bold leading-tight;
 }
 
 .text-secondary-heading {
-  @apply text-2xl md:text-3xl font-bold;
+  @apply text-2xl md:text-3xl font-bold leading-tight;
 }
 
 .text-tertiary-heading {
-  @apply text-xl md:text-2xl font-bold;
+  @apply text-xl md:text-2xl font-bold leading-tight;
 }
 
 .text-body {
-  @apply text-base md:text-lg;
+  @apply text-base md:text-lg leading-relaxed;
 }
 
 .text-caption {
-  @apply text-sm md:text-base;
+  @apply text-sm md:text-base leading-relaxed;
+}
+
+/* Enhanced project card styling */
+.project-card {
+  @apply bg-secondary rounded-2xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl transform hover:-translate-y-2;
+}
+
+.project-card-image {
+  @apply w-full h-48 object-cover transition-transform duration-500;
+}
+
+.project-card-overlay {
+  @apply absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6;
+}
+
+/* Enhanced modal styling */
+.project-modal {
+  @apply bg-background rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl;
+}
+
+.project-modal-header {
+  @apply flex flex-wrap items-start justify-between gap-6 mb-6;
+}
+
+.project-modal-title {
+  @apply text-3xl md:text-4xl font-bold mb-2;
+}
+
+.project-modal-category {
+  @apply inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium;
+}
+
+.project-modal-image {
+  @apply h-64 md:h-80 w-full object-cover;
+}
+
+/* Enhanced filter buttons */
+.filter-button {
+  @apply px-5 py-2.5 rounded-full text-base font-medium transition-all duration-300 transform hover:-translate-y-0.5;
+}
+
+.filter-button-active {
+  @apply bg-primary text-white shadow-md hover:shadow-lg;
+}
+
+.filter-button-inactive {
+  @apply bg-secondary text-foreground hover:bg-secondary/80 shadow-sm hover:shadow-md;
+}
+
+/* Enhanced search bar */
+.search-bar {
+  @apply w-full px-6 py-4 bg-secondary rounded-2xl text-foreground focus:outline-none focus:ring-2 focus:ring-primary shadow-sm text-base pl-14 pr-14 transition-all duration-300;
+}
+
+/* Enhanced technology tags */
+.tech-tag {
+  @apply px-3 py-1.5 bg-primary/10 text-primary text-sm rounded-full transition-all duration-300 hover:bg-primary/20 hover:scale-105;
+}
+
+/* Enhanced project links */
+.project-link {
+  @apply flex items-center gap-2 font-medium text-sm transition-colors duration-300 transform hover:-translate-y-0.5;
+}
+
+.project-link-primary {
+  @apply text-primary hover:text-primary-dark;
+}
+
+.project-link-secondary {
+  @apply text-foreground hover:text-primary;
+}
+
+/* Micro-interactions and visual enhancements */
+.pulse-animation {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 127, 0, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 127, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 127, 0, 0);
+  }
+}
+
+.bounce-in {
+  animation: bounceIn 0.6s ease-out;
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Enhanced button hover effects */
+.btn-enhanced {
+  @apply transition-all duration-300 transform;
+}
+
+.btn-enhanced:hover {
+  @apply scale-105 -translate-y-0.5;
+}
+
+.btn-enhanced:active {
+  @apply scale-95;
+}
+
+/* Enhanced card hover effects */
+.card-enhanced {
+  @apply transition-all duration-300 transform;
+}
+
+.card-enhanced:hover {
+  @apply shadow-xl -translate-y-1;
+}
+
+/* Smooth transitions for dark mode */
+.dark-mode-transition * {
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* Enhanced focus states */
+.focus-enhanced {
+  @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition-all duration-200;
+}
+
+/* Floating animation */
+.floating {
+  animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Staggered animations */
+.staggered-animation {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.staggered-animation.animate {
+  animation: fadeInUp 0.6s forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Enhanced modal transitions */
+.modal-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.modal-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.modal-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.modal-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 300ms, transform 300ms;
 }

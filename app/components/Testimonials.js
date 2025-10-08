@@ -103,17 +103,17 @@ const Testimonials = () => {
   };
 
   return (
-    <section id="testimonials" className="spacious-section">
+    <section id="testimonials" className="compact-section">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="text-center mb-24"
+        className="text-center mb-12"
       >
         <h2 className="subtle-section-title">Testimonials</h2>
 
-        <p className="text-foreground/70 max-w-3xl mx-auto mt-8 text-body">
+        <p className="text-foreground/70 max-w-3xl mx-auto mt-4 text-body">
           What clients and colleagues say about working with me
         </p>
       </motion.div>
@@ -170,14 +170,16 @@ const Testimonials = () => {
                   <div className="text-6xl text-primary/10 mb-6 text-center">
                     "
                   </div>
-                  <p className="text-body md:text-2xl text-foreground/90 italic mb-10 text-center">
+                  <p className="text-body md:text-2xl text-foreground/90 italic mb-10 text-center leading-relaxed">
                     {testimonial.quote}
                   </p>
 
                   <div className="flex flex-col md:flex-row items-center justify-center gap-6">
                     <div className="bg-gray-200 border-2 border-dashed rounded-full w-20 h-20" />
                     <div className="text-center md:text-left">
-                      <p className="font-bold text-xl">{testimonial.name}</p>
+                      <p className="font-bold text-xl leading-tight">
+                        {testimonial.name}
+                      </p>
 
                       <p className="text-primary mt-2 text-lg">
                         {testimonial.role}

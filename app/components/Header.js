@@ -58,6 +58,20 @@ const Header = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  // Function to handle navigation clicks
+  const handleNavClick = (href) => {
+    // Close mobile menu if open
+    if (isMenuOpen) {
+      setIsMenuOpen(false);
+    }
+
+    // Scroll to the section
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   const navItems = [
     { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
@@ -74,8 +88,8 @@ const Header = () => {
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/70 dark:bg-[#121212]/70 backdrop-blur shadow-md py-3"
-          : "bg-transparent py-5"
+          ? "bg-white/90 dark:bg-[#121212]/90 backdrop-blur-lg shadow-md py-4"
+          : "bg-transparent py-6"
       }`}
     >
       <div className="responsive-container flex justify-between items-center">
@@ -85,10 +99,13 @@ const Header = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <Link href="#home" className="text-2xl font-bold">
+          <button
+            onClick={() => handleNavClick("#home")}
+            className="text-2xl font-bold"
+          >
             <span className="text-foreground">Mohammed</span>
             <span className="text-[#ff7f00]"> Mesoud</span>
-          </Link>
+          </button>
         </motion.div>
 
         {/* Desktop Navigation */}
@@ -100,11 +117,13 @@ const Header = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: index * 0.1 }}
             >
-              <Link
-                href={item.href}
-                className={`relative px-4 py-2.5 text-sm font-medium tracking-wide transition-colors duration-300 ${
+              <button
+                onClick={() => handleNavClick(item.href)}
+                className={`relative px-4 py-3 text-sm font-medium tracking-wide transition-colors duration-300 ${
                   activeSection === item.name.split("#")[1]
                     ? "text-[#ff7f00]"
+                    : scrolled
+                    ? "text-gray-800 dark:text-gray-200 hover:text-[#ff7f00]"
                     : "text-foreground hover:text-[#ff7f00]"
                 }`}
               >
@@ -117,26 +136,30 @@ const Header = () => {
                       : "w-0 group-hover:w-full"
                   }`}
                 ></span>
-              </Link>
+              </button>
             </motion.div>
           ))}
         </nav>
 
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-4">
           {/* Hire Me Button */}
-          <motion.a
-            href="#contact"
+          <motion.button
+            onClick={() => handleNavClick("#contact")}
             className="hidden md:inline-flex items-center text-sm font-medium bg-[#ff7f00] text-white px-5 py-2.5 rounded-full hover:bg-[#e56f00] transition-all duration-300 shadow-sm hover:shadow-md hover:scale-105"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             Hire Me
-          </motion.a>
+          </motion.button>
 
           {/* Theme Toggle */}
           <motion.button
             onClick={toggleTheme}
-            className="p-2.5 rounded-full bg-secondary text-foreground hover:text-[#ff7f00] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#ff7f00] focus:ring-offset-2 dark:bg-[#1a1a1a] dark:hover:text-[#ff7f00]"
+            className={`p-3 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#ff7f00] focus:ring-offset-2 ${
+              scrolled
+                ? "bg-secondary/80 text-gray-800 dark:text-gray-200 hover:text-[#ff7f00]"
+                : "bg-secondary/50 text-foreground hover:text-[#ff7f00]"
+            }`}
             aria-label="Toggle theme"
             whileHover={{ rotate: 30 }}
             whileTap={{ scale: 0.9 }}
@@ -150,7 +173,7 @@ const Header = () => {
                   exit={{ opacity: 0, rotate: 90 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <FiMoon size={20} />
+                  <FiMoon size={22} />
                 </motion.div>
               ) : (
                 <motion.div
@@ -160,7 +183,7 @@ const Header = () => {
                   exit={{ opacity: 0, rotate: 90 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <FiSun size={20} />
+                  <FiSun size={22} />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -169,7 +192,11 @@ const Header = () => {
           {/* Mobile Menu Toggle */}
           <motion.button
             onClick={toggleMenu}
-            className="md:hidden p-2.5 rounded-full bg-secondary text-foreground hover:text-[#ff7f00] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#ff7f00] focus:ring-offset-2 dark:bg-[#1a1a1a] dark:hover:text-[#ff7f00]"
+            className={`md:hidden p-3 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#ff7f00] focus:ring-offset-2 ${
+              scrolled
+                ? "bg-secondary/80 text-gray-800 dark:text-gray-200 hover:text-[#ff7f00]"
+                : "bg-secondary/50 text-foreground hover:text-[#ff7f00]"
+            }`}
             aria-label="Toggle menu"
             whileTap={{ scale: 0.9 }}
           >
@@ -182,7 +209,7 @@ const Header = () => {
                   exit={{ opacity: 0, rotate: 90 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <FiX size={20} />
+                  <FiX size={24} />
                 </motion.div>
               ) : (
                 <motion.div
@@ -192,7 +219,7 @@ const Header = () => {
                   exit={{ opacity: 0, rotate: 90 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <FiMenu size={20} />
+                  <FiMenu size={24} />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -204,7 +231,7 @@ const Header = () => {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.nav
-            className="md:hidden bg-white dark:bg-[#121212] border-t border-secondary/20 py-5 px-4"
+            className="md:hidden bg-white dark:bg-[#121212] border-t border-secondary/20 py-6 px-4"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -220,17 +247,16 @@ const Header = () => {
                   transition={{ duration: 0.2 }}
                   className="py-1.5"
                 >
-                  <Link
-                    href={item.href}
-                    className={`block py-3.5 text-lg font-medium rounded-lg px-4 transition-colors duration-300 ${
+                  <button
+                    onClick={() => handleNavClick(item.href)}
+                    className={`block py-4 text-lg font-medium rounded-lg px-4 transition-colors duration-300 ${
                       activeSection === item.name.split("#")[1]
                         ? "text-[#ff7f00]"
                         : "text-foreground hover:text-[#ff7f00]"
                     }`}
-                    onClick={() => setIsMenuOpen(false)}
                   >
                     {item.name}
-                  </Link>
+                  </button>
                 </motion.div>
               ))}
               <motion.div
@@ -240,13 +266,12 @@ const Header = () => {
                 transition={{ duration: 0.2 }}
                 className="pt-2"
               >
-                <a
-                  href="#contact"
-                  className="inline-flex items-center gap-2.5 text-foreground hover:text-[#ff7f00] transition-colors duration-300 py-3.5 text-lg font-medium rounded-lg px-4 w-full"
-                  onClick={() => setIsMenuOpen(false)}
+                <button
+                  onClick={() => handleNavClick("#contact")}
+                  className="inline-flex items-center gap-2.5 text-foreground hover:text-[#ff7f00] transition-colors duration-300 py-4 text-lg font-medium rounded-lg px-4 w-full"
                 >
                   Hire Me
-                </a>
+                </button>
               </motion.div>
             </div>
           </motion.nav>

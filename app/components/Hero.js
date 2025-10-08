@@ -13,6 +13,7 @@ import {
 import Link from "next/link";
 import useTypewriter from "./hooks/useTypewriter";
 import useParticleBackground from "./hooks/useParticleBackground";
+import Image from "next/image";
 
 const Hero = () => {
   const [isClient, setIsClient] = useState(false);
@@ -27,7 +28,8 @@ const Hero = () => {
 
   const roles = [
     "Full Stack Developer",
-    "UI/UX Designer",
+    "Backend Developer ",
+    " Frontend Developer",
     "Problem Solver",
     "Tech Enthusiast",
   ];
@@ -92,7 +94,7 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="spacious-section min-h-screen flex flex-col justify-center pt-20 pb-28 relative overflow-hidden"
+      className="compact-section min-h-screen flex flex-col justify-center pt-32 pb-20 relative overflow-hidden"
     >
       <canvas
         ref={canvasRef}
@@ -115,14 +117,14 @@ const Hero = () => {
 
           {/* Name - Large and bold */}
           <motion.div variants={itemVariants}>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
               <span className="text-primary">Mohammed Mesoud</span>
             </h1>
           </motion.div>
 
           {/* Profession Line */}
           <motion.div variants={itemVariants}>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground/80 mb-8 min-h-[40px]">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground/80 mb-8 min-h-[40px] leading-tight">
               {isClient && (
                 <span className="inline-block">
                   {roleText}
@@ -138,7 +140,7 @@ const Hero = () => {
 
           <motion.p
             variants={itemVariants}
-            className="text-body text-foreground/70 mb-10 max-w-xl mx-auto lg:mx-0 text-lg md:text-xl"
+            className="text-body text-foreground/70 mb-10 max-w-xl mx-auto lg:mx-0"
           >
             I create beautiful, responsive, and user-friendly web applications
             with modern technologies. Let's build something amazing together!
@@ -168,7 +170,7 @@ const Hero = () => {
             className="flex justify-center lg:justify-start gap-6"
           >
             <a
-              href="https://github.com"
+              href="https://github.com/mome64"
               target="_blank"
               rel="noopener noreferrer"
               className="text-foreground/70 hover:text-primary transition-colors duration-300 bg-secondary/50 p-4 rounded-full shadow-consistent shadow-consistent-hover"
@@ -177,7 +179,7 @@ const Hero = () => {
               <FiGithub size={28} />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/mohammed-mesoud"
               target="_blank"
               rel="noopener noreferrer"
               className="text-foreground/70 hover:text-primary transition-colors duration-300 bg-secondary/50 p-4 rounded-full shadow-consistent shadow-consistent-hover"
@@ -186,7 +188,7 @@ const Hero = () => {
               <FiLinkedin size={28} />
             </a>
             <a
-              href="https://twitter.com"
+              href="#"
               target="_blank"
               rel="noopener noreferrer"
               className="text-foreground/70 hover:text-primary transition-colors duration-300 bg-secondary/50 p-4 rounded-full shadow-consistent shadow-consistent-hover"
@@ -240,8 +242,18 @@ const Hero = () => {
                     ease: "easeInOut",
                   }}
                 >
-                  {/* Profile image placeholder - replace with actual image */}
-                  <div className="bg-gray-200 border-2 border-dashed rounded-full w-40 h-40 md:w-56 md:h-56 lg:w-72 lg:h-72 overflow-hidden" />
+                  {/* Profile image - replaced placeholder with actual image */}
+                  <div className="relative w-40 h-40 md:w-56 md:h-56 lg:w-72 lg:h-72 rounded-full overflow-hidden">
+                    <Image
+                      src="/images/profile.png"
+                      alt="Mohammed Mesoud"
+                      fill
+                      className="object-cover"
+                      priority
+                      quality={95}
+                      sizes="(max-width: 768px) 160px, (max-width: 1024px) 224px, 288px"
+                    />
+                  </div>
                 </motion.div>
               </motion.div>
             </motion.div>
@@ -253,7 +265,7 @@ const Hero = () => {
               transition={{ delay: 0.8 }}
               whileHover={{ scale: 1.05 }}
             >
-              <span className="font-bold text-lg">5+</span> Years Experience
+              <span className="font-bold text-lg">3+</span> Years Experience
             </motion.div>
 
             {/* Floating elements for more visual interest */}

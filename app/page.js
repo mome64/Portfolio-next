@@ -13,7 +13,6 @@ import ScrollProgress from "./components/ScrollProgress";
 import LazySection from "./components/LazySection";
 
 export default function Home() {
-
   useEffect(() => {
     const handleScroll = () => {
       const elements = document.querySelectorAll(".fade-in");
@@ -39,7 +38,7 @@ export default function Home() {
     <div className="min-h-screen">
       <ScrollProgress />
       <Header />
-      <main>
+      <main className="pt-24">
         <Hero />
         <LazySection animation="slideUp">
           <About />

@@ -94,19 +94,19 @@ const Contact = () => {
     {
       icon: <FiMail className="text-2xl" />,
       title: "Email",
-      value: "hello@example.com",
-      link: "mailto:hello@example.com",
+      value: "mesoudmohammed393@gmail.com",
+      link: "mailto:mesoudmohammed393@gmail.com",
     },
     {
       icon: <FiPhone className="text-2xl" />,
       title: "Phone",
-      value: "+1 (123) 456-7890",
-      link: "tel:+11234567890",
+      value: "+251903169980",
+      link: "tel:+251903169980",
     },
     {
       icon: <FiMapPin className="text-2xl" />,
       title: "Location",
-      value: "San Francisco, CA",
+      value: "South Wello, Kombolcha",
       link: "#",
     },
   ];
@@ -114,12 +114,12 @@ const Contact = () => {
   const socialLinks = [
     {
       icon: <FiLinkedin size={24} />,
-      url: "#",
+      url: "https://www.linkedin.com/in/mohammed-mesoud",
       label: "LinkedIn",
     },
     {
       icon: <FiGithub size={24} />,
-      url: "#",
+      url: "https://github.com/mome64",
       label: "GitHub",
     },
     {
@@ -132,70 +132,64 @@ const Contact = () => {
   if (!isClient) return null;
 
   return (
-    <section id="contact" className="spacious-section bg-secondary/20">
+    <section
+      id="contact"
+      className="standard-section bg-secondary/20 dark:bg-secondary/10"
+    >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="text-center mb-24"
+        className="text-center mb-16"
       >
         <h2 className="subtle-section-title">Get In Touch</h2>
 
-        <p className="text-foreground/70 max-w-3xl mx-auto mt-8 text-body">
+        <p className="text-foreground/70 max-w-3xl mx-auto mt-6 text-body">
           Have a project in mind or want to discuss potential opportunities?
           Feel free to reach out!
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
+          className="space-y-12"
         >
-          <h3 className="component-title">Contact Information</h3>
+          <div>
+            <h3 className="component-title mb-8">Contact Information</h3>
 
-          <div className="space-y-8 mb-12">
-            {contactInfo.map((info, index) => (
-              <motion.a
-                key={index}
-                href={info.link}
-                className="flex items-start gap-6 p-6 portfolio-card hover:bg-background/50 transition-colors group shadow-md hover:shadow-lg"
-                whileHover={{ x: 12 }}
-              >
-                <div className="text-primary mt-1 group-hover:scale-110 transition-transform">
-                  {info.icon}
-                </div>
-                <div>
-                  <h4 className="font-semibold text-xl">{info.title}</h4>
-
-                  <p className="text-foreground/80 mt-2 text-lg">
-                    {info.value}
-                  </p>
-                </div>
-              </motion.a>
-            ))}
+            <div className="space-y-6">
+              {contactInfo.map((info, index) => (
+                <motion.a
+                  key={index}
+                  href={info.link}
+                  className="flex items-start gap-6 p-6 portfolio-card hover:bg-background/50 transition-colors group shadow-md hover:shadow-lg dark:hover:bg-secondary/30"
+                  whileHover={{ x: 10 }}
+                >
+                  <div className="text-primary mt-1 group-hover:scale-110 transition-transform">
+                    {info.icon}
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-lg text-foreground leading-tight">
+                      {info.title}
+                    </h4>
+                    <p className="text-foreground/80 mt-2 text-base">
+                      {info.value}
+                    </p>
+                  </div>
+                </motion.a>
+              ))}
+            </div>
           </div>
 
-          <motion.div
-            className="mb-12"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <a
-              href="/Mohammed_Mesoud_Resume.pdf"
-              download
-              className="flex items-center gap-4 p-6 portfolio-card hover:bg-primary hover:text-white transition-colors w-full max-w-xs shadow-lg hover:shadow-xl"
-            >
-              <FiDownload size={24} />
-              <span className="text-lg">Download My CV (PDF)</span>
-            </a>
-          </motion.div>
-
           <div>
-            <h4 className="font-semibold text-xl mb-6">Follow Me</h4>
+            <h4 className="font-semibold text-xl mb-6 text-foreground">
+              Follow Me
+            </h4>
             <div className="flex space-x-5">
               {socialLinks.map((social, index) => (
                 <motion.a
@@ -203,7 +197,7 @@ const Contact = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-background p-5 rounded-full text-foreground hover:bg-primary hover:text-white transition-colors shadow-consistent shadow-consistent-hover"
+                  className="bg-background p-5 rounded-full text-foreground hover:bg-primary hover:text-white transition-colors shadow-consistent shadow-consistent-hover dark:bg-secondary dark:hover:bg-primary"
                   aria-label={social.label}
                   whileHover={{ y: -6, rotate: 5 }}
                   whileTap={{ scale: 0.9 }}
@@ -213,14 +207,33 @@ const Contact = () => {
               ))}
             </div>
           </div>
+
+          <motion.div
+            className="max-w-xs"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <a
+              href="/Mohammed_Mesoud_Resume.pdf"
+              download
+              className="flex items-center gap-4 p-6 portfolio-card hover:bg-primary hover:text-white transition-colors w-full shadow-lg hover:shadow-xl dark:bg-secondary dark:hover:bg-primary"
+            >
+              <FiDownload size={24} />
+              <div>
+                <span className="block font-medium">Download My CV</span>
+                <span className="text-sm opacity-80">PDF Format</span>
+              </div>
+            </a>
+          </motion.div>
         </motion.div>
+
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="portfolio-card p-10 shadow-xl relative overflow-hidden">
+          <div className="portfolio-card p-8 md:p-10 shadow-xl relative overflow-hidden dark:bg-secondary/20">
             <div className="absolute -top-12 -right-12 w-40 h-40 bg-primary/5 rounded-full blur-2xl"></div>
             <div className="absolute -bottom-12 -left-12 w-48 h-48 bg-primary/3 rounded-full blur-2xl"></div>
             <form onSubmit={handleSubmit} className="relative z-10">
@@ -240,7 +253,7 @@ const Contact = () => {
                     onChange={handleChange}
                     className={`w-full px-6 py-4 bg-secondary rounded-consistent focus:outline-none focus:ring-2 ${
                       errors.name ? "focus:ring-red-500" : "focus:ring-primary"
-                    } transition-all shadow-sm text-lg`}
+                    } transition-all shadow-sm text-lg dark:bg-secondary/30 dark:text-foreground`}
                     placeholder="Your name"
                   />
                   {errors.name && (
@@ -271,7 +284,7 @@ const Contact = () => {
                     onChange={handleChange}
                     className={`w-full px-6 py-4 bg-secondary rounded-consistent focus:outline-none focus:ring-2 ${
                       errors.email ? "focus:ring-red-500" : "focus:ring-primary"
-                    } transition-all shadow-sm text-lg`}
+                    } transition-all shadow-sm text-lg dark:bg-secondary/30 dark:text-foreground`}
                     placeholder="your.email@example.com"
                   />
                   {errors.email && (
@@ -299,12 +312,12 @@ const Contact = () => {
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    rows={7}
+                    rows={6}
                     className={`w-full px-6 py-4 bg-secondary rounded-consistent focus:outline-none focus:ring-2 ${
                       errors.message
                         ? "focus:ring-red-500"
                         : "focus:ring-primary"
-                    } transition-all shadow-sm text-lg`}
+                    } transition-all shadow-sm text-lg dark:bg-secondary/30 dark:text-foreground`}
                     placeholder="Your message here..."
                   ></textarea>
                   {errors.message && (
@@ -354,12 +367,15 @@ const Contact = () => {
               <AnimatePresence>
                 {submitStatus === "success" && (
                   <motion.div
-                    className="mt-6 p-6 bg-green-500/20 text-green-600 rounded-2xl text-center flex items-center justify-center gap-3 shadow-lg text-lg"
+                    className="mt-6 p-6 bg-green-500/20 text-green-600 rounded-2xl text-center flex items-center justify-center gap-3 shadow-lg text-lg dark:bg-green-500/10 dark:text-green-400"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                   >
-                    <FiCheck className="text-green-600" size={24} />
+                    <FiCheck
+                      className="text-green-600 dark:text-green-400"
+                      size={24}
+                    />
                     Message sent successfully! I'll get back to you soon.
                   </motion.div>
                 )}

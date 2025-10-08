@@ -1,8 +1,14 @@
 "use client";
 
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FiExternalLink, FiGithub, FiFilter, FiX } from "react-icons/fi";
+import {
+  FiExternalLink,
+  FiGithub,
+  FiFilter,
+  FiX,
+  FiSearch,
+} from "react-icons/fi";
 import ProjectModal from "./ProjectModal"; // Added missing import
 
 const Projects = ({ isVisible = true }) => {
@@ -22,6 +28,12 @@ const Projects = ({ isVisible = true }) => {
       liveUrl: "https://ethiogoal.com",
       githubUrl: "https://github.com/mome64/full-stack",
       category: "Full Stack",
+      features: [
+        "Real-time match updates with WebSocket integration",
+        "Interactive chat system for fan engagement",
+        "Responsive design for all device sizes",
+        "User authentication and profile management",
+      ],
     },
     {
       id: 2,
@@ -33,6 +45,12 @@ const Projects = ({ isVisible = true }) => {
       liveUrl: "#",
       githubUrl: "https://github.com/mome64/Dating-site",
       category: "Full Stack",
+      features: [
+        "User authentication with JWT tokens",
+        "Profile creation and management system",
+        "Advanced matching algorithm",
+        "Real-time messaging capabilities",
+      ],
     },
     {
       id: 3,
@@ -44,6 +62,12 @@ const Projects = ({ isVisible = true }) => {
       liveUrl: "#",
       githubUrl: "https://github.com/mome64/react-vite-pizza",
       category: "Frontend",
+      features: [
+        "Intuitive menu browsing with category filters",
+        "Customizable pizza builder with real-time pricing",
+        "Shopping cart with item management",
+        "Order tracking and delivery status updates",
+      ],
     },
     {
       id: 4,
@@ -55,6 +79,12 @@ const Projects = ({ isVisible = true }) => {
       liveUrl: "#",
       githubUrl: "https://github.com/mome64/E-commerce",
       category: "Frontend",
+      features: [
+        "5-day weather forecast with hourly details",
+        "Location-based weather using geolocation API",
+        "Interactive maps with weather overlays",
+        "Customizable units (Celsius/Fahrenheit)",
+      ],
     },
     {
       id: 5,
@@ -66,6 +96,12 @@ const Projects = ({ isVisible = true }) => {
       liveUrl: "#",
       githubUrl: "https://github.com/mome64/tip-calculator",
       category: "Frontend",
+      features: [
+        "Customizable tip percentages",
+        "Bill splitting for multiple people",
+        "Real-time calculation updates",
+        "Responsive design for all devices",
+      ],
     },
   ];
 
@@ -74,6 +110,8 @@ const Projects = ({ isVisible = true }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const searchInputRef = useRef(null);
 
   // Debounce search query to improve performance
   useEffect(() => {
@@ -150,6 +188,12 @@ const Projects = ({ isVisible = true }) => {
 
   const clearSearch = useCallback(() => {
     setSearchQuery("");
+    searchInputRef.current?.focus();
+  }, []);
+
+  // Handle category change with smooth transition
+  const handleCategoryChange = useCallback((category) => {
+    setSelectedCategory(category);
   }, []);
 
   const containerVariants = {
@@ -174,17 +218,17 @@ const Projects = ({ isVisible = true }) => {
   };
 
   return (
-    <section id="projects" className="spacious-section">
+    <section id="projects" className="compact-section">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="text-center mb-20"
+        className="text-center mb-8 sm:mb-10 md:mb-12"
       >
         <h2 className="subtle-section-title">My Projects</h2>
 
-        <p className="text-foreground/70 max-w-3xl mx-auto mt-8 text-body">
+        <p className="text-foreground/70 max-w-3xl mx-auto mt-4 sm:mt-5 text-body">
           Here are some of my recent projects. Each project reflects my passion
           for creating exceptional digital experiences.
         </p>
@@ -195,154 +239,186 @@ const Projects = ({ isVisible = true }) => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="mb-20 flex flex-col md:flex-row gap-10 justify-between items-center"
+        className="mb-6 sm:mb-8 md:mb-10"
       >
-        <div className="flex flex-wrap gap-4">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-6 py-3.5 rounded-full text-lg font-medium transition-all duration-300 ${
-                selectedCategory === category
-                  ? "bg-primary text-white shadow-md"
-                  : "bg-secondary text-foreground hover:bg-secondary/80 shadow-sm hover:shadow-md"
+        {/* Combined Search and Category Filter */}
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 sm:gap-4 mb-4 sm:mb-5">
+          {/* Category Filter */}
+          <div className="flex flex-wrap gap-2 sm:gap-3">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => handleCategoryChange(category)}
+                className={`filter-button text-sm sm:text-base btn-enhanced ${
+                  selectedCategory === category
+                    ? "filter-button-active"
+                    : "filter-button-inactive"
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+
+          {/* Search Bar */}
+          <div className="relative w-full lg:w-96 xl:w-[32rem]">
+            <div
+              className={`relative transition-all duration-300 ${
+                isSearchFocused ? "scale-[1.02]" : ""
               }`}
             >
-              {category}
-            </button>
-          ))}
-        </div>
+              <input
+                ref={searchInputRef}
+                type="text"
+                placeholder="Search projects..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onFocus={() => setIsSearchFocused(true)}
+                onBlur={() => setIsSearchFocused(false)}
+                className="search-bar text-sm sm:text-base focus-enhanced w-full"
+              />
+              <FiSearch className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 text-foreground/50 text-base sm:text-lg" />
 
-        <div className="relative w-full md:w-auto">
-          <input
-            type="text"
-            placeholder="Search projects..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full md:w-80 px-6 py-3.5 bg-secondary rounded-full text-foreground focus:outline-none focus:ring-2 focus:ring-primary shadow-sm text-lg pr-12"
-          />
+              {searchQuery && (
+                <button
+                  onClick={clearSearch}
+                  className="absolute right-3 sm:right-4 top-1/2 transform -translate-y-1/2 text-foreground/50 hover:text-foreground transition-colors"
+                  aria-label="Clear search"
+                >
+                  <FiX size={16} className="sm:hidden" />
+                  <FiX size={18} className="hidden sm:block" />
+                </button>
+              )}
+            </div>
 
-          {searchQuery && (
-            <button
-              onClick={clearSearch}
-              className="absolute right-12 top-1/2 transform -translate-y-1/2 text-foreground/50 hover:text-foreground transition-colors"
-              aria-label="Clear search"
-            >
-              <FiX size={20} />
-            </button>
-          )}
-
-          <FiFilter className="absolute right-5 top-4 text-foreground/50 text-xl" />
+            {/* Search Tips - positioned absolutely within the search container */}
+            {isSearchFocused && !searchQuery && (
+              <div className="absolute left-0 right-0 mt-2 z-10">
+                <div className="bg-secondary rounded-xl p-3 sm:p-4 shadow-lg animate-fadeIn">
+                  <p className="text-foreground/70 text-xs sm:text-sm text-center">
+                    <span className="font-medium">Tip:</span> Search by
+                    technology (React, Node.js), category (Frontend, Full
+                    Stack), or project name
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </motion.div>
 
-      {/* Search result count */}
-      {(selectedCategory !== "All" || debouncedSearchQuery) && (
-        <div className="mb-6 text-foreground/70">
-          <p>
-            Showing {filteredProjects.length} of {allProjects.length} projects
-            {selectedCategory !== "All" && ` in ${selectedCategory}`}
-            {debouncedSearchQuery && ` matching "${debouncedSearchQuery}"`}
-          </p>
-        </div>
-      )}
-
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-      >
-        <AnimatePresence>
+      {/* Projects Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <AnimatePresence mode="popLayout">
           {filteredProjects.map((project, index) => (
             <motion.div
               key={project.id}
               variants={itemVariants}
-              className="portfolio-card overflow-hidden cursor-pointer group shadow-md hover:shadow-xl"
-              whileHover={{ y: -12 }}
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              className="project-card group card-enhanced"
+              whileHover={{ y: -8 }}
               transition={{ duration: 0.3 }}
               onClick={() => openModal(project)}
               layout
             >
-              <div className="h-48 bg-gray-200 border-2 border-dashed w-full relative overflow-hidden">
+              <div className="h-40 sm:h-48 bg-gray-200 border-2 border-dashed w-full relative overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover"
+                  className="project-card-image group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
-                  <span className="px-4 py-2 bg-primary text-white text-sm rounded-full shadow-md">
+                <div className="project-card-overlay">
+                  <span className="px-3 py-1.5 sm:px-4 sm:py-2 bg-primary text-white text-xs sm:text-sm rounded-full shadow-md">
                     View Details
                   </span>
                 </div>
               </div>
 
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-secondary-heading">{project.title}</h3>
+              <div className="p-4 sm:p-6">
+                <div className="flex justify-between items-start mb-3 sm:mb-4">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold leading-tight">
+                    {project.title}
+                  </h3>
 
-                  <span className="text-sm px-3 py-1.5 bg-primary/10 text-primary rounded-full">
+                  <span className="text-xs sm:text-sm px-2 py-1 sm:px-3 sm:py-1.5 bg-primary/10 text-primary rounded-full whitespace-nowrap">
                     {project.category}
                   </span>
                 </div>
 
-                <p className="text-foreground/70 mb-5 text-body line-clamp-2">
+                <p className="text-foreground/70 mb-4 sm:mb-5 text-sm sm:text-base line-clamp-2">
                   {project.description}
                 </p>
 
-                <div className="flex flex-wrap gap-2 mb-6">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-6">
                   {project.tech.slice(0, 3).map((tech, techIndex) => (
                     <span
                       key={techIndex}
-                      className="px-3 py-1.5 bg-primary/10 text-primary text-sm rounded-full"
+                      className="tech-tag text-xs sm:text-sm px-2 py-1 sm:px-3 sm:py-1.5 btn-enhanced"
                     >
                       {tech}
                     </span>
                   ))}
                   {project.tech.length > 3 && (
-                    <span className="px-3 py-1.5 bg-secondary text-foreground/60 text-sm rounded-full">
+                    <span className="text-xs sm:text-sm px-2 py-1 sm:px-3 sm:py-1.5 bg-secondary text-foreground/60 rounded-full">
                       +{project.tech.length - 3}
                     </span>
                   )}
                 </div>
 
-                <div className="flex gap-4 pt-5 border-t border-secondary/50">
+                <div className="flex gap-3 sm:gap-4 pt-4 sm:pt-5 border-t border-secondary/50">
                   <a
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-primary hover:text-primary-dark transition-colors font-medium text-sm"
+                    className="project-link project-link-primary text-sm btn-enhanced"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    <FiExternalLink size={16} /> Live Demo
+                    <FiExternalLink size={14} className="sm:hidden" />
+                    <FiExternalLink
+                      size={16}
+                      className="hidden sm:block"
+                    />{" "}
+                    Live Demo
                   </a>
                   <a
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-foreground hover:text-primary transition-colors font-medium text-sm"
+                    className="project-link project-link-secondary text-sm btn-enhanced"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    <FiGithub size={16} /> GitHub
+                    <FiGithub size={14} className="sm:hidden" />
+                    <FiGithub size={16} className="hidden sm:block" /> GitHub
                   </a>
                 </div>
               </div>
             </motion.div>
           ))}
         </AnimatePresence>
-      </motion.div>
+      </div>
 
       {filteredProjects.length === 0 && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="text-center py-20"
+          className="text-center py-12 sm:py-16 md:py-20"
         >
-          <p className="text-foreground/70 text-body">
+          <p className="text-foreground/70 text-body mb-4 sm:mb-6">
             No projects found matching your criteria. Try a different filter or
             search term.
           </p>
+          <button
+            onClick={() => {
+              setSelectedCategory("All");
+              setSearchQuery("");
+              searchInputRef.current?.focus();
+            }}
+            className="portfolio-btn portfolio-btn-primary text-sm sm:text-base btn-enhanced"
+          >
+            Clear Filters
+          </button>
         </motion.div>
       )}
 

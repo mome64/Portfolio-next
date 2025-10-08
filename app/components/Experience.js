@@ -46,13 +46,13 @@ const Experience = () => {
   return (
     <LazySection
       id="experience"
-      className="spacious-section bg-secondary/20"
+      className="compact-section bg-secondary/20"
       threshold={0.1}
     >
-      <div className="text-center mb-24">
+      <div className="text-center mb-12">
         <h2 className="subtle-section-title">Experience & Education</h2>
 
-        <p className="text-foreground/70 max-w-3xl mx-auto mt-8 text-body">
+        <p className="text-foreground/70 max-w-3xl mx-auto mt-4 text-body">
           My professional journey and educational background
         </p>
       </div>
@@ -60,7 +60,7 @@ const Experience = () => {
       <div className="relative">
         <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-primary/30 hidden md:block"></div>
 
-        <div className="space-y-20">
+        <div className="space-y-12">
           {experiences.map((exp, index) => (
             <motion.div
               key={index}
@@ -83,20 +83,22 @@ const Experience = () => {
                   {exp.period}
                 </span>
 
-                <h3 className="text-secondary-heading mt-4">{exp.title}</h3>
+                <h3 className="text-secondary-heading mt-3 leading-tight">
+                  {exp.title}
+                </h3>
 
-                <p className="text-primary font-medium mt-2 text-lg">
+                <p className="text-primary font-medium mt-1 text-lg">
                   {exp.company}
                 </p>
 
-                <p className="mt-5 text-foreground/80 text-body">
+                <p className="mt-3 text-foreground/80 text-body">
                   {exp.description}
                 </p>
 
-                <ul className="mt-6 space-y-3">
+                <ul className="mt-4 space-y-2">
                   {exp.responsibilities.map((resp, respIndex) => (
                     <li key={respIndex} className="flex items-start">
-                      <span className="text-primary mr-4 text-lg">•</span>
+                      <span className="text-primary mr-3 text-lg">•</span>
                       <span className="text-foreground/80 text-body">
                         {resp}
                       </span>
@@ -125,15 +127,15 @@ const Experience = () => {
                 2012 - 2016
               </span>
 
-              <h3 className="text-secondary-heading mt-4">
+              <h3 className="text-secondary-heading mt-3 leading-tight">
                 Bachelor of Science in Computer Science
               </h3>
 
-              <p className="text-primary font-medium mt-2 text-lg">
+              <p className="text-primary font-medium mt-1 text-lg">
                 University of Technology
               </p>
 
-              <p className="mt-5 text-foreground/80 text-body">
+              <p className="mt-3 text-foreground/80 text-body">
                 Graduated with honors. Specialized in web development and
                 software engineering. Completed thesis on "Modern JavaScript
                 Frameworks and Performance Optimization".
