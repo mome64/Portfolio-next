@@ -1,0 +1,9 @@
+{
+  "workbench.editorAssociations": {
+    "*.png": "default",
+    "*.jpg": "default",
+    "*.jpeg": "default",
+    "*.gif": "default",
+    "*.svg": "default"
+  }
+}

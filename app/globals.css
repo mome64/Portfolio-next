@@ -3,24 +3,277 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #ff7f00; /* Orange accent color - used sparingly */
+  --primary-dark: #e57200;
+  --secondary: #f8f9fa; /* Lighter background for cards and sections */
+  --accent: #3b82f6;
+  --neutral-light: #fafafa; /* Extra light neutral for increased whitespace effect */
+  --neutral-dark: #1a1a1a; /* Darker neutral for depth */
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --secondary: #1a1a1a; /* Darker secondary for better contrast */
+  --neutral-light: #121212; /* Dark neutral for depth */
+  --neutral-dark: #000000; /* Deepest dark for contrast */
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-neutral-light: var(--neutral-light);
+  --color-neutral-dark: var(--neutral-dark);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Custom styles for the portfolio */
+.section {
+  @apply py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto;
+}
+
+/* Increased whitespace and padding for better readability */
+.spacious-section {
+  @apply py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto;
+}
+
+/* Standardized section with consistent vertical spacing */
+.standard-section {
+  @apply py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto;
+}
+
+/* Tight section for content-dense areas */
+.tight-section {
+  @apply py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto;
+}
+
+/* New standardized spacing system */
+.xs-spacing {
+  @apply p-2;
+}
+
+.sm-spacing {
+  @apply p-4;
+}
+
+.md-spacing {
+  @apply p-6;
+}
+
+.lg-spacing {
+  @apply p-8;
+}
+
+.xl-spacing {
+  @apply p-12;
+}
+
+.xxl-spacing {
+  @apply p-16;
+}
+
+/* Responsive container with consistent padding */
+.responsive-container {
+  @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Consistent card styling */
+.portfolio-card {
+  @apply bg-secondary rounded-2xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg;
+}
+
+/* Consistent button styling */
+.portfolio-btn {
+  @apply inline-flex items-center justify-center px-6 py-3.5 font-medium rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary;
+}
+
+.portfolio-btn-primary {
+  @apply bg-primary text-white hover:bg-primary-dark focus:ring-primary shadow-md hover:shadow-lg;
+}
+
+.portfolio-btn-secondary {
+  @apply bg-secondary text-foreground hover:bg-secondary/80 focus:ring-secondary border border-secondary;
+}
+
+.portfolio-btn-minimal {
+  @apply text-foreground hover:text-primary transition-colors duration-300;
+}
+
+/* Consistent section titles */
+.section-title {
+  @apply text-3xl md:text-4xl font-bold mb-16 text-center relative;
+}
+
+.section-title::after {
+  content: "";
+  @apply absolute bottom-[-12px] left-1/2 transform -translate-x-1/2 w-20 h-1 bg-primary rounded-full;
+}
+
+.subtle-section-title {
+  @apply text-3xl md:text-4xl font-bold mb-12 text-center relative;
+}
+
+.subtle-section-title::after {
+  content: "";
+  @apply absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-16 h-1 bg-primary rounded-full;
+}
+
+.component-title {
+  @apply text-2xl md:text-3xl font-bold mb-8 relative;
+}
+
+.component-title::after {
+  content: "";
+  @apply absolute bottom-[-8px] left-0 w-12 h-1 bg-primary rounded-full;
+}
+
+/* Grid layouts with standardized gaps */
+.grid-layout {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+}
+
+.grid-layout-dense {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+}
+
+.grid-layout-spacious {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12;
+}
+
+/* Flex layouts with standardized gaps */
+.flex-layout {
+  @apply flex flex-wrap gap-8;
+}
+
+.flex-layout-dense {
+  @apply flex flex-wrap gap-4;
+}
+
+.flex-layout-spacious {
+  @apply flex flex-wrap gap-12;
+}
+
+/* Fade in animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.appear {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+/* Accessibility improvements for focus states */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+}
+
+/* Light and dark mode specific adjustments */
+.light-mode-optimized {
+  /* Optimized for light mode readability */
+}
+
+.dark-mode-optimized {
+  /* Optimized for dark mode contrast */
+}
+
+/* Responsive utility classes for consistent spacing */
+@media (min-width: 640px) {
+  .sm\:section-title {
+    @apply text-4xl;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:section-title {
+    @apply text-5xl;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:section-title {
+    @apply text-5xl;
+  }
+}
+
+/* Responsive grid adjustments */
+.grid-cols-responsive {
+  @apply grid-cols-1 md:grid-cols-2 lg:grid-cols-3;
+}
+
+/* Consistent border radius */
+.rounded-consistent {
+  @apply rounded-2xl;
+}
+
+/* Consistent shadow levels */
+.shadow-consistent {
+  @apply shadow-md;
+}
+
+.shadow-consistent-hover {
+  @apply hover:shadow-lg;
+}
+
+/* Consistent hover effects */
+.hover-effect {
+  @apply hover:-translate-y-1 transition-all duration-300;
+}
+
+/* Consistent text sizes */
+.text-primary-heading {
+  @apply text-3xl md:text-4xl font-bold;
+}
+
+.text-secondary-heading {
+  @apply text-2xl md:text-3xl font-bold;
+}
+
+.text-tertiary-heading {
+  @apply text-xl md:text-2xl font-bold;
+}
+
+.text-body {
+  @apply text-base md:text-lg;
+}
+
+.text-caption {
+  @apply text-sm md:text-base;
 }

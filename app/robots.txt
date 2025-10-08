@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://your-portfolio-url.com/sitemap.xml
