@@ -34,6 +34,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
+          style={{ fontFamily: "var(--font-jetbrains-mono)" }}
         >
           <motion.div
             className="project-modal max-h-[95vh] w-full max-w-4xl bounce-in"
@@ -48,6 +49,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                 onClick={onClose}
                 className="absolute top-3 sm:top-4 right-3 sm:right-4 p-1.5 sm:p-2 rounded-full bg-secondary/80 text-foreground hover:text-primary hover:bg-secondary transition-all duration-300 z-10 shadow-lg btn-enhanced"
                 aria-label="Close modal"
+                style={{ fontFamily: "var(--font-jetbrains-mono)" }}
               >
                 <FiX size={20} className="sm:hidden" />
                 <FiX size={24} className="hidden sm:block" />
@@ -80,6 +82,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="portfolio-btn portfolio-btn-primary text-sm sm:text-base py-2.5 px-4 sm:px-6 btn-enhanced flex items-center gap-2"
+                      style={{ fontFamily: "var(--font-jetbrains-mono)" }}
                     >
                       <FiExternalLink size={16} className="sm:hidden" />
                       <FiExternalLink size={18} className="hidden sm:block" />
@@ -91,6 +94,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="portfolio-btn portfolio-btn-secondary text-sm sm:text-base py-2.5 px-4 sm:px-6 btn-enhanced flex items-center gap-2"
+                      style={{ fontFamily: "var(--font-jetbrains-mono)" }}
                     >
                       <FiGithub size={16} className="sm:hidden" />
                       <FiGithub size={18} className="hidden sm:block" />
@@ -225,5 +229,6 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
     </AnimatePresence>
   );
 };
+
 
 export default ProjectModal;

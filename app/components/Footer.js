@@ -12,12 +12,14 @@ import {
   FiMail,
   FiPhone,
   FiMapPin,
+  FiSend,
 } from "react-icons/fi";
 import LazySection from "./LazySection";
 
 const Footer = () => {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [email, setEmail] = useState("");
 
   useEffect(() => {
     setMounted(true);
@@ -39,6 +41,13 @@ const Footer = () => {
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    if (email && email.includes("@")) {
+      setEmail("");
     }
   };
 
@@ -64,6 +73,25 @@ const Footer = () => {
       label: "Email",
     },
     { icon: FiPhone, href: "tel:+251903169980", label: "Phone" },
+  ];
+
+  const quickActions = [
+    {
+      icon: FiMail,
+      text: "Email Me",
+      action: () =>
+        (window.location.href = "mailto:mesoudmohammed393@gmail.com"),
+    },
+    {
+      icon: FiPhone,
+      text: "Call Me",
+      action: () => (window.location.href = "tel:+251903169980"),
+    },
+    {
+      icon: FiSend,
+      text: "Message",
+      action: () => handleNavClick("#contact"),
+    },
   ];
 
   if (!mounted) return null;
@@ -94,21 +122,26 @@ const Footer = () => {
       as="footer"
       className="bg-secondary/30 border-t border-secondary/50"
       threshold={0.1}
+      style={{ fontFamily: "var(--font-jetbrains-mono)" }}
     >
       <div className="standard-section py-16">
+        {/* Main footer content */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-4 gap-12"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           variants={container}
           initial="hidden"
           animate="show"
         >
+          {/* Brand and social section */}
           <motion.div className="md:col-span-1" variants={item}>
             <motion.h3
-              className="text-2xl font-bold text-primary mb-6 leading-tight"
+              className="text-2xl font-bold text-primary mb-4 leading-tight group"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
-              Portfolio
+              <span className="group-hover:scale-105 transition-transform duration-300 inline-block">
+                Mohammed Mesoud
+              </span>
             </motion.h3>
             <motion.p
               className="text-foreground/70 mb-6 text-body"
@@ -118,7 +151,9 @@ const Footer = () => {
               Creating exceptional digital experiences with passion and
               precision.
             </motion.p>
-            <div className="flex space-x-4">
+
+            {/* Social links */}
+            <div className="flex space-x-4 mb-6">
               {socialLinks.map((social, index) => {
                 const Icon = social.icon;
                 return (
@@ -132,7 +167,8 @@ const Footer = () => {
                     <Link
                       href={social.href}
                       aria-label={social.label}
-                      className="text-foreground/70 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded-lg p-2 block"
+                      className="text-foreground/70 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded-lg p-2 block bg-secondary/50 hover:bg-secondary/80 dark:bg-secondary/30 dark:hover:bg-secondary/50"
+                      style={{ fontFamily: "var(--font-jetbrains-mono)" }}
                     >
                       <Icon size={20} />
                     </Link>
@@ -140,113 +176,10 @@ const Footer = () => {
                 );
               })}
             </div>
-          </motion.div>
 
-          <motion.div className="md:col-span-1" variants={item}>
-            <motion.h4
-              className="text-xl font-semibold mb-6 leading-tight"
-              whileHover={{ x: 5 }}
-              transition={{ duration: 0.3 }}
-            >
-              Navigation
-            </motion.h4>
-            <ul className="space-y-3">
-              {navLinks.map((link, index) => (
-                <motion.li
-                  key={link.name}
-                  variants={item}
-                  whileHover={{ x: 5 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <button
-                    onClick={() => handleNavClick(link.href)}
-                    className="text-foreground/70 hover:text-primary transition-colors focus:outline-none focus:underline text-body flex items-center w-full text-left"
-                  >
-                    <span className="mr-2">→</span> {link.name}
-                  </button>
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
-
-          <motion.div className="md:col-span-1" variants={item}>
-            <motion.h4
-              className="text-xl font-semibold mb-6 leading-tight"
-              whileHover={{ x: 5 }}
-              transition={{ duration: 0.3 }}
-            >
-              Contact Info
-            </motion.h4>
-            <address className="not-italic text-foreground/70 space-y-3">
-              <motion.p
-                className="flex items-start gap-3 text-body"
-                whileHover={{ x: 5 }}
-                transition={{ duration: 0.2 }}
-              >
-                <FiMapPin size={20} className="mt-1" />
-                <span>South Wello, Kombolcha</span>
-              </motion.p>
-              <motion.p
-                className="flex items-start gap-3 text-body"
-                whileHover={{ x: 5 }}
-                transition={{ duration: 0.2 }}
-              >
-                <FiMail size={20} className="mt-1" />
-                <span>mesoudmohammed393@gmail.com</span>
-              </motion.p>
-              <motion.p
-                className="flex items-start gap-3 text-body"
-                whileHover={{ x: 5 }}
-                transition={{ duration: 0.2 }}
-              >
-                <FiPhone size={20} className="mt-1" />
-                <span>+251903169980</span>
-              </motion.p>
-            </address>
-          </motion.div>
-
-          <motion.div className="md:col-span-1" variants={item}>
-            <motion.h4
-              className="text-xl font-semibold mb-6 leading-tight"
-              whileHover={{ x: 5 }}
-              transition={{ duration: 0.3 }}
-            >
-              Theme
-            </motion.h4>
-            <motion.button
-              onClick={toggleTheme}
-              className="flex items-center gap-3 text-foreground/70 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg py-3 px-5 bg-secondary hover:bg-secondary/80 shadow-sm w-full justify-center"
-              aria-label="Toggle theme"
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            >
-              {theme === "light" ? (
-                <>
-                  <motion.div
-                    initial={{ rotate: -30 }}
-                    animate={{ rotate: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <FiMoon size={20} />
-                  </motion.div>
-                  <span>Dark Mode</span>
-                </>
-              ) : (
-                <>
-                  <motion.div
-                    initial={{ rotate: 30 }}
-                    animate={{ rotate: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <FiSun size={20} />
-                  </motion.div>
-                  <span>Light Mode</span>
-                </>
-              )}
-            </motion.button>
+            {/* Want to work together section */}
             <motion.div
-              className="mt-6 p-4 bg-secondary/50 rounded-lg"
+              className="p-4 bg-secondary/50 rounded-lg"
               whileHover={{ y: -5 }}
               transition={{ duration: 0.3 }}
             >
@@ -270,35 +203,223 @@ const Footer = () => {
               >
                 <button
                   onClick={() => handleNavClick("#contact")}
-                  className="portfolio-btn portfolio-btn-primary text-sm w-full text-center block"
+                  className="portfolio-btn portfolio-btn-primary text-sm w-full text-center block group"
+                  style={{ fontFamily: "var(--font-jetbrains-mono)" }}
                 >
-                  Get in Touch
+                  <span className="group-hover:scale-105 transition-transform duration-300">
+                    Get in Touch
+                  </span>
                 </button>
               </motion.div>
             </motion.div>
           </motion.div>
+
+          {/* Navigation section */}
+          <motion.div className="md:col-span-1" variants={item}>
+            <motion.h4
+              className="text-xl font-semibold mb-6 leading-tight group"
+              whileHover={{ x: 5 }}
+              transition={{ duration: 0.3 }}
+            >
+              <span className="group-hover:scale-105 transition-transform duration-300 inline-block">
+                Navigation
+              </span>
+            </motion.h4>
+            <ul className="space-y-3">
+              {navLinks.map((link, index) => (
+                <motion.li
+                  key={link.name}
+                  variants={item}
+                  whileHover={{ x: 5 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <button
+                    onClick={() => handleNavClick(link.href)}
+                    className="text-foreground/70 hover:text-primary transition-colors focus:outline-none focus:underline text-body flex items-center w-full text-left group"
+                    style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+                  >
+                    <span className="mr-2 group-hover:translate-x-1 transition-transform duration-300">
+                      →
+                    </span>
+                    <span className="group-hover:text-primary transition-colors duration-300">
+                      {link.name}
+                    </span>
+                  </button>
+                </motion.li>
+              ))}
+            </ul>
+
+            {/* Quick actions */}
+            <motion.div
+              className="mt-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+            >
+              <h4 className="text-xl font-semibold mb-4 leading-tight">
+                Quick Actions
+              </h4>
+              <div className="grid grid-cols-3 gap-2">
+                {quickActions.map((action, index) => {
+                  const Icon = action.icon;
+                  return (
+                    <motion.button
+                      key={index}
+                      onClick={action.action}
+                      className="flex flex-col items-center justify-center p-3 bg-secondary rounded-lg hover:bg-secondary/80 transition-all duration-300 group dark:bg-secondary/50 dark:hover:bg-secondary/70 shadow-sm hover:shadow-md"
+                      whileHover={{ y: -5 }}
+                      whileTap={{ scale: 0.95 }}
+                      style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+                    >
+                      <Icon
+                        size={20}
+                        className="mb-1 group-hover:text-primary transition-colors duration-300"
+                      />
+                      <span className="text-xs text-center group-hover:text-primary transition-colors duration-300">
+                        {action.text}
+                      </span>
+                    </motion.button>
+                  );
+                })}
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Contact info section */}
+          <motion.div className="md:col-span-1" variants={item}>
+            <motion.h4
+              className="text-xl font-semibold mb-6 leading-tight group"
+              whileHover={{ x: 5 }}
+              transition={{ duration: 0.3 }}
+            >
+              <span className="group-hover:scale-105 transition-transform duration-300 inline-block">
+                Contact Info
+              </span>
+            </motion.h4>
+            <address className="not-italic text-foreground/70 space-y-4">
+              <motion.p
+                className="flex items-start gap-3 text-body group"
+                whileHover={{ x: 5 }}
+                transition={{ duration: 0.2 }}
+              >
+                <FiMapPin
+                  size={20}
+                  className="flex-shrink-0 mt-1 group-hover:text-primary transition-colors duration-300"
+                />
+                <span className="group-hover:text-primary transition-colors duration-300">
+                  South Wello, Kombolcha
+                </span>
+              </motion.p>
+              <motion.p
+                className="flex items-start gap-3 text-body group"
+                whileHover={{ x: 5 }}
+                transition={{ duration: 0.2 }}
+              >
+                <FiMail
+                  size={20}
+                  className="flex-shrink-0 mt-1 group-hover:text-primary transition-colors duration-300"
+                />
+                <span className="group-hover:text-primary transition-colors duration-300">
+                  mesoudmohammed393@gmail.com
+                </span>
+              </motion.p>
+              <motion.p
+                className="flex items-start gap-3 text-body group"
+                whileHover={{ x: 5 }}
+                transition={{ duration: 0.2 }}
+              >
+                <FiPhone
+                  size={20}
+                  className="flex-shrink-0 mt-1 group-hover:text-primary transition-colors duration-300"
+                />
+                <span className="group-hover:text-primary transition-colors duration-300">
+                  +251903169980
+                </span>
+              </motion.p>
+            </address>
+
+            {/* Theme toggle */}
+            <motion.div
+              className="mt-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+            >
+              <motion.h4
+                className="text-xl font-semibold mb-4 leading-tight"
+                whileHover={{ x: 5 }}
+                transition={{ duration: 0.3 }}
+              >
+                Theme
+              </motion.h4>
+              <motion.button
+                onClick={toggleTheme}
+                className="flex items-center gap-3 text-foreground/70 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg py-3 px-5 bg-secondary hover:bg-secondary/80 shadow-sm w-full justify-center group dark:bg-secondary/50 dark:hover:bg-secondary/70"
+                aria-label="Toggle theme"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+              >
+                {theme === "light" ? (
+                  <>
+                    <motion.div
+                      initial={{ rotate: -30 }}
+                      animate={{ rotate: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="group-hover:text-primary transition-colors duration-300"
+                    >
+                      <FiMoon size={20} />
+                    </motion.div>
+                    <span className="group-hover:text-primary transition-colors duration-300">
+                      Dark Mode
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <motion.div
+                      initial={{ rotate: 30 }}
+                      animate={{ rotate: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="group-hover:text-primary transition-colors duration-3300"
+                    >
+                      <FiSun size={20} />
+                    </motion.div>
+                    <span className="group-hover:text-primary transition-colors duration-300">
+                      Light Mode
+                    </span>
+                  </>
+                )}
+              </motion.button>
+            </motion.div>
+          </motion.div>
         </motion.div>
 
+        {/* Footer bottom */}
         <motion.div
-          className="border-t border-secondary/30 mt-16 pt-8 text-center text-foreground/60"
+          className="border-t border-secondary/30 mt-12 pt-8 text-center text-foreground/60"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.5 }}
         >
           <motion.p
-            className="text-body"
+            className="text-body group"
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.2 }}
           >
-            &copy; {new Date().getFullYear()} Mohammed Mesoud. All rights
-            reserved.
+            <span className="group-hover:text-primary transition-colors duration-300">
+              &copy; {new Date().getFullYear()} Mohammed Mesoud. All rights
+              reserved.
+            </span>
           </motion.p>
           <motion.p
-            className="text-sm mt-2 text-foreground/50"
+            className="text-sm mt-2 text-foreground/50 group"
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.2 }}
           >
-            Designed and built with ❤️
+            <span className="group-hover:text-primary/70 transition-colors duration-300">
+              Designed and built with ❤️
+            </span>
           </motion.p>
         </motion.div>
       </div>

@@ -35,7 +35,10 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <div
+      className="min-h-screen"
+      style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+    >
       <ScrollProgress />
       <Header />
       <main className="pt-24">

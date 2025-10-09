@@ -43,7 +43,7 @@ const Projects = ({ isVisible = true }) => {
       image: "/images/pams.png",
       tech: ["React", "Node.js", "Express", "MongoDB"],
       liveUrl: "#",
-      githubUrl: "https://github.com/mome64/Dating-site",
+      githubUrl: "https://github.com/mome64/pams",
       category: "Full Stack",
       features: [
         "User authentication with JWT tokens",
@@ -77,7 +77,7 @@ const Projects = ({ isVisible = true }) => {
       image: "/images/weather.jpg",
       tech: ["React", "CSS", "HTML", "JavaScript"],
       liveUrl: "#",
-      githubUrl: "https://github.com/mome64/E-commerce",
+      githubUrl: "https://github.com/mome64/Weather",
       category: "Frontend",
       features: [
         "5-day weather forecast with hourly details",
@@ -94,7 +94,7 @@ const Projects = ({ isVisible = true }) => {
       image: "/images/tipCalculator.jpg",
       tech: ["HTML", "CSS", "JavaScript"],
       liveUrl: "#",
-      githubUrl: "https://github.com/mome64/tip-calculator",
+      githubUrl: "https://github.com/mome64/tip-calculate",
       category: "Frontend",
       features: [
         "Customizable tip percentages",
@@ -218,7 +218,13 @@ const Projects = ({ isVisible = true }) => {
   };
 
   return (
-    <section id="projects" className="compact-section">
+    <section
+      id="projects"
+      className="compact-section overflow-x-hidden"
+      style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+    >
+      {" "}
+      {/* Added overflow-x-hidden here */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -233,7 +239,6 @@ const Projects = ({ isVisible = true }) => {
           for creating exceptional digital experiences.
         </p>
       </motion.div>
-
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -254,6 +259,7 @@ const Projects = ({ isVisible = true }) => {
                     ? "filter-button-active"
                     : "filter-button-inactive"
                 }`}
+                style={{ fontFamily: "var(--font-jetbrains-mono)" }}
               >
                 {category}
               </button>
@@ -276,6 +282,7 @@ const Projects = ({ isVisible = true }) => {
                 onFocus={() => setIsSearchFocused(true)}
                 onBlur={() => setIsSearchFocused(false)}
                 className="search-bar text-sm sm:text-base focus-enhanced w-full"
+                style={{ fontFamily: "var(--font-jetbrains-mono)" }}
               />
               <FiSearch className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 text-foreground/50 text-base sm:text-lg" />
 
@@ -306,7 +313,6 @@ const Projects = ({ isVisible = true }) => {
           </div>
         </div>
       </motion.div>
-
       {/* Projects Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         <AnimatePresence mode="popLayout">
@@ -374,6 +380,7 @@ const Projects = ({ isVisible = true }) => {
                     rel="noopener noreferrer"
                     className="project-link project-link-primary text-sm btn-enhanced"
                     onClick={(e) => e.stopPropagation()}
+                    style={{ fontFamily: "var(--font-jetbrains-mono)" }}
                   >
                     <FiExternalLink size={14} className="sm:hidden" />
                     <FiExternalLink
@@ -388,6 +395,7 @@ const Projects = ({ isVisible = true }) => {
                     rel="noopener noreferrer"
                     className="project-link project-link-secondary text-sm btn-enhanced"
                     onClick={(e) => e.stopPropagation()}
+                    style={{ fontFamily: "var(--font-jetbrains-mono)" }}
                   >
                     <FiGithub size={14} className="sm:hidden" />
                     <FiGithub size={16} className="hidden sm:block" /> GitHub
@@ -398,7 +406,6 @@ const Projects = ({ isVisible = true }) => {
           ))}
         </AnimatePresence>
       </div>
-
       {filteredProjects.length === 0 && (
         <motion.div
           initial={{ opacity: 0 }}
@@ -416,12 +423,12 @@ const Projects = ({ isVisible = true }) => {
               searchInputRef.current?.focus();
             }}
             className="portfolio-btn portfolio-btn-primary text-sm sm:text-base btn-enhanced"
+            style={{ fontFamily: "var(--font-jetbrains-mono)" }}
           >
             Clear Filters
           </button>
         </motion.div>
       )}
-
       <ProjectModal
         project={selectedProject}
         isOpen={isModalOpen}

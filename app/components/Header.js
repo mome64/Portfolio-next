@@ -102,8 +102,17 @@ const Header = () => {
           <button
             onClick={() => handleNavClick("#home")}
             className="text-2xl font-bold"
+            style={{ fontFamily: "var(--font-jetbrains-mono)" }}
           >
-            <span className="text-foreground">Mohammed</span>
+            <span
+              className={`transition-colors duration-300 ${
+                scrolled
+                  ? "text-gray-800 dark:text-gray-200"
+                  : "text-foreground"
+              }`}
+            >
+              Mohammed
+            </span>
             <span className="text-[#ff7f00]"> Mesoud</span>
           </button>
         </motion.div>
@@ -126,6 +135,7 @@ const Header = () => {
                     ? "text-gray-800 dark:text-gray-200 hover:text-[#ff7f00]"
                     : "text-foreground hover:text-[#ff7f00]"
                 }`}
+                style={{ fontFamily: "var(--font-jetbrains-mono)" }}
               >
                 {item.name}
                 {/* Animated underline */}
@@ -146,6 +156,7 @@ const Header = () => {
           <motion.button
             onClick={() => handleNavClick("#contact")}
             className="hidden md:inline-flex items-center text-sm font-medium bg-[#ff7f00] text-white px-5 py-2.5 rounded-full hover:bg-[#e56f00] transition-all duration-300 shadow-sm hover:shadow-md hover:scale-105"
+            style={{ fontFamily: "var(--font-jetbrains-mono)" }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -254,6 +265,7 @@ const Header = () => {
                         ? "text-[#ff7f00]"
                         : "text-foreground hover:text-[#ff7f00]"
                     }`}
+                    style={{ fontFamily: "var(--font-jetbrains-mono)" }}
                   >
                     {item.name}
                   </button>
@@ -269,6 +281,7 @@ const Header = () => {
                 <button
                   onClick={() => handleNavClick("#contact")}
                   className="inline-flex items-center gap-2.5 text-foreground hover:text-[#ff7f00] transition-colors duration-300 py-4 text-lg font-medium rounded-lg px-4 w-full"
+                  style={{ fontFamily: "var(--font-jetbrains-mono)" }}
                 >
                   Hire Me
                 </button>

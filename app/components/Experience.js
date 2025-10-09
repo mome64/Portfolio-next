@@ -6,39 +6,41 @@ import LazySection from "./LazySection";
 const Experience = () => {
   const experiences = [
     {
-      title: "Senior Full Stack Developer",
-      company: "Tech Innovations Inc.",
-      period: "2020 - Present",
-      description:
-        "Leading development of scalable web applications using React, Node.js, and cloud technologies. Mentoring junior developers and implementing CI/CD pipelines.",
+      title: "Student Internship",
+      company: "Kombolcha Textile Share Company (KTSC)",
+      period: "Jan 2025 – Mar 2025",
+      description: "Web development intern focused on digital modernization.",
       responsibilities: [
-        "Architected and developed 5+ web applications serving 100k+ users",
-        "Implemented microservices architecture reducing latency by 40%",
-        "Led a team of 4 developers on various projects",
+        "Developed web-based shopping platform with HTML, CSS, JS, PHP",
+        "Improved online presence and sales/inventory systems",
+        "Collaborated on system analysis and secure database operations",
+        "Gained real-world software engineering experience",
       ],
     },
     {
-      title: "Frontend Developer",
-      company: "Digital Solutions Ltd.",
-      period: "2018 - 2020",
+      title: "Remote Freelance Developer",
+      company: "Self-Employed",
+      period: "2024 – Present",
       description:
-        "Developed responsive web applications and improved user experience for enterprise clients. Collaborated with UX designers to implement pixel-perfect interfaces.",
+        "Full-stack developer creating custom websites and applications.",
       responsibilities: [
-        "Built 10+ client websites using React and Vue.js",
-        "Improved page load speed by 35% through optimization techniques",
-        "Implemented responsive design for mobile-first approach",
+        "Built full-stack apps with real-time features",
+        "Delivered end-to-end projects from design to deployment",
+        "Managed client communication and project timelines",
+        "Specialized in responsive, modern web applications",
       ],
     },
     {
-      title: "Web Developer",
-      company: "Creative Web Agency",
-      period: "2016 - 2018",
+      title: "Open Source & Personal Projects",
+      company: "Independent Developer",
+      period: "2023 – Present",
       description:
-        "Built custom websites and e-commerce solutions for small to medium businesses. Managed client relationships and project timelines.",
+        "Developer contributing to open-source and personal projects.",
       responsibilities: [
-        "Developed 20+ websites for various clients",
-        "Integrated payment gateways for e-commerce platforms",
-        "Provided ongoing maintenance and support",
+        "Created food ordering website with admin dashboard",
+        "Built Quran Listening App with React Native",
+        "Developed real-time communication system with Socket.io",
+        "Continuously learning new technologies",
       ],
     },
   ];
@@ -48,6 +50,7 @@ const Experience = () => {
       id="experience"
       className="compact-section bg-secondary/20"
       threshold={0.1}
+      style={{ fontFamily: "var(--font-jetbrains-mono)" }}
     >
       <div className="text-center mb-12">
         <h2 className="subtle-section-title">Experience & Education</h2>
@@ -75,7 +78,7 @@ const Experience = () => {
               <div className="absolute left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full bg-primary border-4 border-background shadow-lg z-10 hidden md:block"></div>
 
               <div
-                className={`md:w-5/12 p-10 portfolio-card shadow-lg hover:shadow-xl transition-shadow duration-300 ${
+                className={`md:w-5/12 p-6 portfolio-card shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 ${
                   index % 2 === 0 ? "md:text-right" : "md:text-left"
                 }`}
               >
@@ -114,7 +117,7 @@ const Experience = () => {
           ))}
 
           <motion.div
-            className="relative flex flex-col md:flex-row  items-center"
+            className="relative flex flex-col md:flex-row items-center"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -122,29 +125,28 @@ const Experience = () => {
           >
             <div className="absolute left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full bg-primary border-4 border-background shadow-lg z-10 hidden md:block"></div>
 
-            <div className="md:w-5/12 p-10 portfolio-card shadow-lg hover:shadow-xl transition-shadow duration-300 md:text-right">
-              <span className="text-primary font-bold text-lg">
-                2012 - 2016
-              </span>
-
-              <h3 className="text-secondary-heading mt-3 leading-tight">
-                Bachelor of Science in Computer Science
-              </h3>
-
-              <p className="text-primary font-medium mt-1 text-lg">
-                University of Technology
-              </p>
-
-              <p className="mt-3 text-foreground/80 text-body">
-                Graduated with honors. Specialized in web development and
-                software engineering. Completed thesis on "Modern JavaScript
-                Frameworks and Performance Optimization".
-              </p>
-            </div>
+            <div className="md:w-5/12 p-6"></div>
 
             <div className="md:w-2/12 hidden md:block"></div>
 
-            <div className="md:w-5/12 p-6"></div>
+            <div className="md:w-5/12 p-6 portfolio-card shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 md:text-left">
+              <span className="text-primary font-bold text-lg">
+                2022 - 2025
+              </span>
+
+              <h3 className="text-secondary-heading mt-3 leading-tight">
+                Bachelor of Science in Information Science
+              </h3>
+
+              <p className="text-primary font-medium mt-1 text-lg">
+                Haramaya University
+              </p>
+
+              <p className="mt-3 text-foreground/80 text-body">
+                Graduated with honors. Specialized in information systems and
+                data management.
+              </p>
+            </div>
           </motion.div>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import { Inter } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import AnalyticsWrapper from "./components/Analytics";
@@ -8,6 +9,13 @@ const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
+});
+
+const jetBrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "700"],
 });
 
 export const metadata = {
@@ -57,7 +65,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} antialiased transition-colors duration-300 font-sans`}
+        className={`${inter.variable} ${jetBrainsMono.variable} antialiased transition-colors duration-300 font-sans`}
       >
         <StructuredData />
         <ThemeProvider

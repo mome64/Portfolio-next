@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import axios from "axios";
 import {
   FiMail,
   FiPhone,
@@ -9,8 +10,6 @@ import {
   FiLinkedin,
   FiGithub,
   FiTwitter,
-  FiDownload,
-  FiCheck,
 } from "react-icons/fi";
 
 const Contact = () => {
@@ -78,16 +77,56 @@ const Contact = () => {
 
     setIsSubmitting(true);
 
-    setTimeout(() => {
+    try {
+      const response = await axios.post("/api/contact", formData);
+
+      if (response.data.success) {
+        setIsSubmitting(false);
+        setSubmitStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+        setErrors({});
+
+        setTimeout(() => {
+          setSubmitStatus(null);
+        }, 5000);
+      } else {
+        setIsSubmitting(false);
+        setSubmitStatus("error");
+
+        setTimeout(() => {
+          setSubmitStatus(null);
+        }, 5000);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
       setIsSubmitting(false);
-      setSubmitStatus("success");
-      setFormData({ name: "", email: "", message: "" });
-      setErrors({});
+      setSubmitStatus("error");
+
+      // Log more detailed error information
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.error("Error response:", error.response.data);
+        console.error("Error status:", error.response.status);
+        console.error("Error headers:", error.response.headers);
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.error("Error request:", error.request);
+        // Check if this is a connection error
+        if (!error.request.response) {
+          console.error(
+            "This might be a connection error. Check if the server is running on the correct port."
+          );
+        }
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.error("Error message:", error.message);
+      }
 
       setTimeout(() => {
         setSubmitStatus(null);
       }, 5000);
-    }, 1500);
+    }
   };
 
   const contactInfo = [
@@ -135,6 +174,7 @@ const Contact = () => {
     <section
       id="contact"
       className="standard-section bg-secondary/20 dark:bg-secondary/10"
+      style={{ fontFamily: "var(--font-jetbrains-mono)" }}
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -169,6 +209,7 @@ const Contact = () => {
                   href={info.link}
                   className="flex items-start gap-6 p-6 portfolio-card hover:bg-background/50 transition-colors group shadow-md hover:shadow-lg dark:hover:bg-secondary/30"
                   whileHover={{ x: 10 }}
+                  style={{ fontFamily: "var(--font-jetbrains-mono)" }}
                 >
                   <div className="text-primary mt-1 group-hover:scale-110 transition-transform">
                     {info.icon}
@@ -201,30 +242,13 @@ const Contact = () => {
                   aria-label={social.label}
                   whileHover={{ y: -6, rotate: 5 }}
                   whileTap={{ scale: 0.9 }}
+                  style={{ fontFamily: "var(--font-jetbrains-mono)" }}
                 >
                   {social.icon}
                 </motion.a>
               ))}
             </div>
           </div>
-
-          <motion.div
-            className="max-w-xs"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <a
-              href="/Mohammed_Mesoud_Resume.pdf"
-              download
-              className="flex items-center gap-4 p-6 portfolio-card hover:bg-primary hover:text-white transition-colors w-full shadow-lg hover:shadow-xl dark:bg-secondary dark:hover:bg-primary"
-            >
-              <FiDownload size={24} />
-              <div>
-                <span className="block font-medium">Download My CV</span>
-                <span className="text-sm opacity-80">PDF Format</span>
-              </div>
-            </a>
-          </motion.div>
         </motion.div>
 
         <motion.div
@@ -233,14 +257,14 @@ const Contact = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="portfolio-card p-8 md:p-10 shadow-xl relative overflow-hidden dark:bg-secondary/20">
+          <div className="portfolio-card p-6 md:p-8 shadow-xl relative overflow-hidden dark:bg-secondary/20">
             <div className="absolute -top-12 -right-12 w-40 h-40 bg-primary/5 rounded-full blur-2xl"></div>
             <div className="absolute -bottom-12 -left-12 w-48 h-48 bg-primary/3 rounded-full blur-2xl"></div>
             <form onSubmit={handleSubmit} className="relative z-10">
-              <div className="mb-8">
+              <div className="mb-6">
                 <label
                   htmlFor="name"
-                  className="block text-foreground font-medium mb-4 text-lg"
+                  className="block text-foreground font-medium mb-3 text-base"
                 >
                   Name
                 </label>
@@ -251,14 +275,15 @@ const Contact = () => {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className={`w-full px-6 py-4 bg-secondary rounded-consistent focus:outline-none focus:ring-2 ${
+                    className={`w-full px-4 py-3 bg-secondary rounded-consistent focus:outline-none focus:ring-2 ${
                       errors.name ? "focus:ring-red-500" : "focus:ring-primary"
-                    } transition-all shadow-sm text-lg dark:bg-secondary/30 dark:text-foreground`}
+                    } transition-all shadow-sm text-base dark:bg-secondary/30 dark:text-foreground`}
                     placeholder="Your name"
+                    style={{ fontFamily: "var(--font-jetbrains-mono)" }}
                   />
                   {errors.name && (
                     <motion.span
-                      className="text-red-500 text-base mt-3 block"
+                      className="text-red-500 text-sm mt-2 block"
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                     >
@@ -268,10 +293,10 @@ const Contact = () => {
                 </div>
               </div>
 
-              <div className="mb-8">
+              <div className="mb-6">
                 <label
                   htmlFor="email"
-                  className="block text-foreground font-medium mb-4 text-lg"
+                  className="block text-foreground font-medium mb-3 text-base"
                 >
                   Email
                 </label>
@@ -282,14 +307,15 @@ const Contact = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className={`w-full px-6 py-4 bg-secondary rounded-consistent focus:outline-none focus:ring-2 ${
+                    className={`w-full px-4 py-3 bg-secondary rounded-consistent focus:outline-none focus:ring-2 ${
                       errors.email ? "focus:ring-red-500" : "focus:ring-primary"
-                    } transition-all shadow-sm text-lg dark:bg-secondary/30 dark:text-foreground`}
+                    } transition-all shadow-sm text-base dark:bg-secondary/30 dark:text-foreground`}
                     placeholder="your.email@example.com"
+                    style={{ fontFamily: "var(--font-jetbrains-mono)" }}
                   />
                   {errors.email && (
                     <motion.span
-                      className="text-red-500 text-base mt-3 block"
+                      className="text-red-500 text-sm mt-2 block"
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                     >
@@ -299,10 +325,10 @@ const Contact = () => {
                 </div>
               </div>
 
-              <div className="mb-8">
+              <div className="mb-6">
                 <label
                   htmlFor="message"
-                  className="block text-foreground font-medium mb-4 text-lg"
+                  className="block text-foreground font-medium mb-3 text-base"
                 >
                   Message
                 </label>
@@ -312,17 +338,18 @@ const Contact = () => {
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    rows={6}
-                    className={`w-full px-6 py-4 bg-secondary rounded-consistent focus:outline-none focus:ring-2 ${
+                    rows={4}
+                    className={`w-full px-4 py-3 bg-secondary rounded-consistent focus:outline-none focus:ring-2 ${
                       errors.message
                         ? "focus:ring-red-500"
                         : "focus:ring-primary"
-                    } transition-all shadow-sm text-lg dark:bg-secondary/30 dark:text-foreground`}
+                    } transition-all shadow-sm text-base dark:bg-secondary/30 dark:text-foreground resize-y min-h-[120px]`}
                     placeholder="Your message here..."
+                    style={{ fontFamily: "var(--font-jetbrains-mono)" }}
                   ></textarea>
                   {errors.message && (
                     <motion.span
-                      className="text-red-500 text-base mt-3 block"
+                      className="text-red-500 text-sm mt-2 block"
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                     >
@@ -335,9 +362,10 @@ const Contact = () => {
               <motion.button
                 type="submit"
                 disabled={isSubmitting}
-                className="portfolio-btn portfolio-btn-primary w-full relative overflow-hidden shadow-lg hover:shadow-xl text-lg py-4"
+                className="portfolio-btn portfolio-btn-primary w-full relative overflow-hidden shadow-lg hover:shadow-xl text-base py-3.5 flex items-center justify-center"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                style={{ fontFamily: "var(--font-jetbrains-mono)" }}
               >
                 <AnimatePresence mode="wait">
                   {isSubmitting ? (
@@ -349,7 +377,7 @@ const Contact = () => {
                       className="flex items-center justify-center gap-3"
                     >
                       <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                      Sending...
+                      <span>Sending Message...</span>
                     </motion.span>
                   ) : (
                     <motion.span
@@ -357,8 +385,18 @@ const Contact = () => {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
+                      className="flex items-center justify-center gap-3"
                     >
-                      Send Message
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                      </svg>
+                      <span>Send Message</span>
                     </motion.span>
                   )}
                 </AnimatePresence>
@@ -367,16 +405,65 @@ const Contact = () => {
               <AnimatePresence>
                 {submitStatus === "success" && (
                   <motion.div
-                    className="mt-6 p-6 bg-green-500/20 text-green-600 rounded-2xl text-center flex items-center justify-center gap-3 shadow-lg text-lg dark:bg-green-500/10 dark:text-green-400"
+                    className="mt-6 p-6 bg-green-500/20 text-green-700 rounded-2xl text-center flex items-center justify-center gap-3 shadow-lg text-lg dark:bg-green-500/10 dark:text-green-400 border border-green-500/30"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                   >
-                    <FiCheck
-                      className="text-green-600 dark:text-green-400"
-                      size={24}
-                    />
-                    Message sent successfully! I'll get back to you soon.
+                    <div className="flex-shrink-0">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6 text-green-500"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    </div>
+                    <div className="text-left">
+                      <h4 className="font-bold">Message Sent Successfully!</h4>
+                      <p className="text-sm mt-1">
+                        Thank you for reaching out. I'll get back to you soon.
+                      </p>
+                    </div>
+                  </motion.div>
+                )}
+                {submitStatus === "error" && (
+                  <motion.div
+                    className="mt-6 p-6 bg-red-500/20 text-red-700 rounded-2xl text-center flex items-center justify-center gap-3 shadow-lg text-lg dark:bg-red-500/10 dark:text-red-400 border border-red-500/30"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                  >
+                    <div className="flex-shrink-0">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6 text-red-500"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    </div>
+                    <div className="text-left">
+                      <h4 className="font-bold">Failed to Send Message</h4>
+                      <p className="text-sm mt-1">
+                        Something went wrong. Please try again or contact me
+                        directly.
+                      </p>
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>

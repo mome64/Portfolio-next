@@ -95,6 +95,7 @@ const Hero = () => {
     <section
       id="home"
       className="compact-section min-h-screen flex flex-col justify-center pt-32 pb-20 relative overflow-hidden"
+      style={{ fontFamily: "var(--font-jetbrains-mono)" }}
     >
       <canvas
         ref={canvasRef}
@@ -153,12 +154,14 @@ const Hero = () => {
             <a
               href="#contact"
               className="portfolio-btn portfolio-btn-primary flex items-center gap-3 group shadow-lg hover:shadow-xl text-lg px-8 py-4"
+              style={{ fontFamily: "var(--font-jetbrains-mono)" }}
             >
               <FiMail className="group-hover:animate-bounce" /> Hire Me
             </a>
             <a
               href="/Mohammed_Mesoud_Resume.pdf"
               className="portfolio-btn portfolio-btn-secondary flex items-center gap-3 group text-lg px-8 py-4"
+              style={{ fontFamily: "var(--font-jetbrains-mono)" }}
               download
             >
               <FiDownload className="group-hover:animate-bounce" /> Download CV
@@ -175,6 +178,7 @@ const Hero = () => {
               rel="noopener noreferrer"
               className="text-foreground/70 hover:text-primary transition-colors duration-300 bg-secondary/50 p-4 rounded-full shadow-consistent shadow-consistent-hover"
               aria-label="GitHub"
+              style={{ fontFamily: "var(--font-jetbrains-mono)" }}
             >
               <FiGithub size={28} />
             </a>
@@ -184,6 +188,7 @@ const Hero = () => {
               rel="noopener noreferrer"
               className="text-foreground/70 hover:text-primary transition-colors duration-300 bg-secondary/50 p-4 rounded-full shadow-consistent shadow-consistent-hover"
               aria-label="LinkedIn"
+              style={{ fontFamily: "var(--font-jetbrains-mono)" }}
             >
               <FiLinkedin size={28} />
             </a>
@@ -193,6 +198,7 @@ const Hero = () => {
               rel="noopener noreferrer"
               className="text-foreground/70 hover:text-primary transition-colors duration-300 bg-secondary/50 p-4 rounded-full shadow-consistent shadow-consistent-hover"
               aria-label="Twitter"
+              style={{ fontFamily: "var(--font-jetbrains-mono)" }}
             >
               <FiTwitter size={28} />
             </a>
@@ -264,6 +270,7 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
               whileHover={{ scale: 1.05 }}
+              style={{ fontFamily: "var(--font-jetbrains-mono)" }}
             >
               <span className="font-bold text-lg">3+</span> Years Experience
             </motion.div>
@@ -304,6 +311,7 @@ const Hero = () => {
         transition={{ delay: 1.5, duration: 0.5 }}
         whileHover={{ y: 5 }}
         onClick={scrollToNextSection}
+        style={{ fontFamily: "var(--font-jetbrains-mono)" }}
       >
         <span className="text-foreground/70 mb-2 text-caption">
           Scroll Down
