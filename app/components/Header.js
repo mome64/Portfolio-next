@@ -88,7 +88,7 @@ const Header = () => {
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg shadow-md py-4"
+          ? "bg-white/80 dark:bg-[#1a1a1a]/80 backdrop-blur-sm shadow-sm py-3"
           : "bg-transparent py-6"
       }`}
     >
@@ -104,9 +104,11 @@ const Header = () => {
             className="flex items-center"
           >
             <img
-              src="/images/Logo.jpg"
+              src={
+                theme === "dark" ? "/images/logo-dark.jpg" : "/images/Logo.jpg"
+              }
               alt="Mohammed Mesoud Logo"
-              className={`transition-all duration-300 rounded-full p-1 bg-white/80 dark:bg-gray-200/80 object-cover ${
+              className={`transition-all duration-300 rounded-full ${
                 scrolled ? "h-14 w-14" : "h-20 w-20"
               }`}
             />
@@ -129,7 +131,7 @@ const Header = () => {
                     ? "text-[#ff7f00] dark:text-[#ff7f00]"
                     : scrolled
                     ? "text-gray-800 hover:text-[#ff7f00] dark:text-gray-200 dark:hover:text-[#ff7f00]"
-                    : "text-foreground hover:text-[#ff7f00] dark:text-gray-200 dark:hover:text-[#ff7f00]"
+                    : "text-black hover:text-[#ff7f00] dark:text-black dark:hover:text-[#ff7f00]"
                 }`}
                 style={{ fontFamily: "var(--font-jetbrains-mono)" }}
               >
@@ -247,7 +249,7 @@ const Header = () => {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.nav
-            className="md:hidden bg-white dark:bg-gray-800 border-t border-secondary/20 dark:border-[#333333] py-6 px-4"
+            className="md:hidden bg-white dark:bg-[#1a1a1a] border-t border-secondary/20 dark:border-[#333333] py-6 px-4"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -268,7 +270,7 @@ const Header = () => {
                     className={`block py-4 text-lg font-medium rounded-lg px-4 transition-colors duration-300 ${
                       activeSection === item.name.split("#")[1]
                         ? "text-[#ff7f00] dark:text-[#ff7f00]"
-                        : "text-foreground hover:text-[#ff7f00] dark:text-gray-200 dark:hover:text-[#ff7f00]"
+                        : "text-gray-800 hover:text-[#ff7f00] dark:text-gray-200 dark:hover:text-[#ff7f00]"
                     }`}
                     style={{ fontFamily: "var(--font-jetbrains-mono)" }}
                   >
@@ -285,7 +287,7 @@ const Header = () => {
               >
                 <button
                   onClick={() => handleNavClick("#contact")}
-                  className="inline-flex items-center gap-2.5 text-foreground hover:text-[#ff7f00] dark:text-gray-200 dark:hover:text-[#ff7f00] transition-colors duration-300 py-4 text-lg font-medium rounded-lg px-4 w-full"
+                  className="inline-flex items-center gap-2.5 text-gray-800 hover:text-[#ff7f00] dark:text-gray-200 dark:hover:text-[#ff7f00] transition-colors duration-300 py-4 text-lg font-medium rounded-lg px-4 w-full"
                   style={{ fontFamily: "var(--font-jetbrains-mono)" }}
                 >
                   Hire Me

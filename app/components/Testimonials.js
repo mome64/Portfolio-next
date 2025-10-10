@@ -1,17 +1,12 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { motion, useTransform, useMotionValue, useSpring } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { FiChevronLeft, FiChevronRight, FiStar, FiUser } from "react-icons/fi";
-import Image from "next/image";
 
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
-  const containerRef = useRef(null);
-  const x = useMotionValue(0);
-  const rotateY = useTransform(x, [-100, 100], [15, -15]);
-  const springX = useSpring(x, { stiffness: 300, damping: 30 });
 
   const testimonials = [
     {
@@ -22,7 +17,6 @@ const Testimonials = () => {
       role: "IT Department Supervisor, Kombolcha Textile Share Company",
       gender: "female",
       rating: 5,
-      companyLogo: "/company1.svg",
     },
     {
       id: 2,
@@ -32,7 +26,6 @@ const Testimonials = () => {
       role: "Project Manager, Samuel Tech Solutions",
       gender: "male",
       rating: 5,
-      companyLogo: "/company2.svg",
     },
     {
       id: 3,
@@ -42,7 +35,6 @@ const Testimonials = () => {
       role: "UI/UX Designer",
       gender: "female",
       rating: 5,
-      companyLogo: "/company3.svg",
     },
   ];
 
@@ -84,7 +76,6 @@ const Testimonials = () => {
   };
 
   const renderGenderIcon = (gender) => {
-    // Using only FiUser for all genders since Feather Icons doesn't have specific gender icons
     return <FiUser size={40} />;
   };
 
@@ -99,21 +90,56 @@ const Testimonials = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="text-center mb-12"
+        className="text-center mb-8 sm:mb-12"
       >
         <h2 className="subtle-section-title">Testimonials</h2>
-
-        <p className="text-foreground/70 max-w-3xl mx-auto mt-4 text-body">
+        <p className="text-foreground/70 max-w-3xl mx-auto mt-4 text-caption">
           What clients and colleagues say about working with me
         </p>
       </motion.div>
+
       <div
-        ref={containerRef}
         className="max-w-6xl mx-auto"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <div className="relative h-[350px] md:h-[400px] perspective-1000">
+        {/* Mobile view - Simplified horizontal scroll */}
+        <div className="sm:hidden w-full overflow-x-auto scrollbar-hide py-4 px-4 snap-x snap-mandatory">
+          <div className="flex space-x-6 w-max">
+            {testimonials.map((testimonial) => (
+              <div
+                key={testimonial.id}
+                className="flex-shrink-0 w-[90vw] max-w-sm bg-background rounded-lg p-5 shadow-lg border border-secondary/30 backdrop-blur-sm snap-center"
+              >
+                <div className="flex justify-center mb-3">
+                  {renderStars(testimonial.rating)}
+                </div>
+                <div className="text-3xl text-primary/10 mb-3 text-center">
+                  "
+                </div>
+                <p className="text-sm text-foreground/90 italic mb-5 text-center leading-relaxed">
+                  {testimonial.quote}
+                </p>
+                <div className="flex flex-col items-center justify-center gap-3">
+                  <div className="relative w-12 h-12 rounded-full bg-secondary flex items-center justify-center">
+                    {renderGenderIcon(testimonial.gender)}
+                  </div>
+                  <div className="text-center">
+                    <p className="font-bold text-base leading-tight">
+                      {testimonial.name}
+                    </p>
+                    <p className="text-primary mt-1 text-xs">
+                      {testimonial.role}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop view - 3D carousel */}
+        <div className="hidden sm:block relative h-[350px] md:h-[400px] perspective-1000">
           {testimonials.map((testimonial, index) => {
             const offset = index - currentIndex;
             const absOffset = Math.abs(offset);
@@ -156,14 +182,12 @@ const Testimonials = () => {
                   <div className="flex justify-center mb-4">
                     {renderStars(testimonial.rating)}
                   </div>
-
                   <div className="text-4xl text-primary/10 mb-4 text-center">
                     "
                   </div>
                   <p className="text-sm md:text-base text-foreground/90 italic mb-6 text-center leading-relaxed">
                     {testimonial.quote}
                   </p>
-
                   <div className="flex flex-col md:flex-row items-center justify-center gap-4">
                     <div className="relative w-16 h-16 rounded-full bg-secondary flex items-center justify-center">
                       {renderGenderIcon(testimonial.gender)}
@@ -172,15 +196,10 @@ const Testimonials = () => {
                       <p className="font-bold text-lg leading-tight">
                         {testimonial.name}
                       </p>
-
                       <p className="text-primary mt-1 text-sm">
                         {testimonial.role}
                       </p>
                     </div>
-                  </div>
-
-                  <div className="flex justify-center mt-4">
-                    <div className="bg-gray-200 border-2 border-dashed rounded w-24 h-8" />
                   </div>
                 </div>
               </motion.div>
@@ -188,10 +207,25 @@ const Testimonials = () => {
           })}
         </div>
 
-        <div className="flex justify-center items-center mt-12 gap-4">
+        {/* Mobile pagination dots */}
+        <div className="sm:hidden flex justify-center mt-6 space-x-2">
+          {testimonials.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToTestimonial(index)}
+              className={`w-2 h-2 rounded-full ${
+                index === currentIndex ? "bg-primary" : "bg-secondary"
+              }`}
+              aria-label={`Go to testimonial ${index + 1}`}
+            />
+          ))}
+        </div>
+
+        {/* Desktop navigation controls */}
+        <div className="hidden sm:flex justify-center items-center mt-8 sm:mt-12 gap-3 sm:gap-4">
           <motion.button
             onClick={prevTestimonial}
-            className="p-3 rounded-full bg-secondary text-foreground hover:bg-primary hover:text-white transition-colors shadow-consistent shadow-consistent-hover"
+            className="p-2 sm:p-3 rounded-full bg-secondary text-foreground hover:bg-primary hover:text-white transition-colors shadow-consistent shadow-consistent-hover touch-enhanced"
             aria-label="Previous testimonial"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
@@ -207,7 +241,7 @@ const Testimonials = () => {
                 onClick={() => goToTestimonial(index)}
                 className={`w-3 h-3 rounded-full ${
                   index === currentIndex ? "bg-primary" : "bg-secondary"
-                }`}
+                } touch-enhanced`}
                 aria-label={`Go to testimonial ${index + 1}`}
                 whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.8 }}
@@ -217,7 +251,7 @@ const Testimonials = () => {
 
           <motion.button
             onClick={nextTestimonial}
-            className="p-3 rounded-full bg-secondary text-foreground hover:bg-primary hover:text-white transition-colors shadow-consistent shadow-consistent-hover"
+            className="p-2 sm:p-3 rounded-full bg-secondary text-foreground hover:bg-primary hover:text-white transition-colors shadow-consistent shadow-consistent-hover touch-enhanced"
             aria-label="Next testimonial"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
@@ -227,7 +261,7 @@ const Testimonials = () => {
           </motion.button>
         </div>
 
-        <div className="mt-8 flex justify-center">
+        <div className="mt-6 sm:mt-8 flex justify-center">
           <div className="w-24 h-1.5 bg-secondary rounded-full overflow-hidden">
             <motion.div
               className="h-full bg-primary"

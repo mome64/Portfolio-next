@@ -289,19 +289,19 @@ const About = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="text-center mb-12"
+        className="text-center mb-8 sm:mb-12"
       >
         <h2 className="subtle-section-title">About Me</h2>
 
-        <p className="text-foreground/70 max-w-3xl mx-auto mt-4 text-body">
+        <p className="text-foreground/70 max-w-3xl mx-auto mt-4 text-body text-sm sm:text-base">
           Get to know me better and discover my skills and experience
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
         {/* Personal Info Card */}
         <motion.div
-          className="portfolio-card p-8 shadow-lg h-fit"
+          className="portfolio-card p-6 sm:p-8 shadow-lg h-fit"
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -309,7 +309,7 @@ const About = () => {
         >
           <div className="flex flex-col items-center mb-6">
             <div className="relative mb-4">
-              <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary to-orange-500 p-1">
+              <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-gradient-to-br from-primary to-orange-500 p-1">
                 <div className="bg-background rounded-full w-full h-full overflow-hidden flex items-center justify-center">
                   <div className="relative w-full h-full rounded-full overflow-hidden">
                     <Image
@@ -318,48 +318,56 @@ const About = () => {
                       fill
                       className="object-cover"
                       quality={95}
-                      sizes="128px"
+                      sizes="(max-width: 640px) 96px, 128px"
                     />
                   </div>
                 </div>
               </div>
-              <div className="absolute -bottom-2 -right-2 bg-primary text-white px-3 py-1 rounded-full text-xs font-bold">
+              <div className="absolute -bottom-2 -right-2 bg-primary text-white px-2 py-1 rounded-full text-xs font-bold">
                 3+ Years
               </div>
             </div>
 
-            <h3 className="text-2xl font-bold mb-1">Mohammed Mesoud</h3>
-            <p className="text-primary font-medium">Full Stack Developer</p>
+            <h3 className="text-xl sm:text-2xl font-bold mb-1">
+              Mohammed Mesoud
+            </h3>
+            <p className="text-primary font-medium text-sm sm:text-base">
+              Full Stack Developer
+            </p>
           </div>
 
-          <div className="space-y-4 mb-6">
+          <div className="space-y-3 mb-6">
             {personalInfo.map((info, index) => (
               <div key={index} className="flex items-center gap-3">
                 <div className="bg-primary/10 p-2 rounded-lg">
                   <span className="text-primary">{info.icon}</span>
                 </div>
                 <div>
-                  <p className="text-foreground/60 text-sm">{info.label}</p>
-                  <p className="font-medium">{info.value}</p>
+                  <p className="text-foreground/60 text-xs sm:text-sm">
+                    {info.label}
+                  </p>
+                  <p className="font-medium text-sm">{info.value}</p>
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3">
             <Link
               href="/cv"
-              className="portfolio-btn portfolio-btn-primary flex items-center justify-center gap-3 group shadow-lg hover:shadow-xl text-lg w-full py-3"
+              className="portfolio-btn portfolio-btn-primary flex items-center justify-center gap-2 group shadow-lg hover:shadow-xl text-base sm:text-lg w-full py-2.5 sm:py-3"
               style={{ fontFamily: "var(--font-jetbrains-mono)" }}
             >
-              <FiDownload className="group-hover:animate-bounce" /> View CV
+              <FiDownload className="group-hover:animate-bounce" size={18} />{" "}
+              View CV
             </Link>
             <a
               href="#contact"
-              className="portfolio-btn portfolio-btn-secondary flex items-center justify-center gap-3 group text-lg w-full py-3"
+              className="portfolio-btn portfolio-btn-secondary flex items-center justify-center gap-2 group text-base sm:text-lg w-full py-2.5 sm:py-3"
               style={{ fontFamily: "var(--font-jetbrains-mono)" }}
             >
-              <FiMail className="group-hover:animate-bounce" /> Contact Me
+              <FiMail className="group-hover:animate-bounce" size={18} />{" "}
+              Contact Me
             </a>
           </div>
         </motion.div>
@@ -371,11 +379,11 @@ const About = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="space-y-6 mb-8"
+            className="space-y-4 sm:space-y-6 mb-6 sm:mb-8"
           >
             <motion.p
               variants={itemVariants}
-              className="text-body text-foreground/80"
+              className="text-body text-foreground/80 text-sm sm:text-base"
             >
               I'm a passionate Full Stack Developer with over 3 years of
               experience creating modern web applications. I specialize in
@@ -385,7 +393,7 @@ const About = () => {
 
             <motion.p
               variants={itemVariants}
-              className="text-body text-foreground/80"
+              className="text-body text-foreground/80 text-sm sm:text-base"
             >
               My approach combines technical expertise with an eye for design,
               ensuring that every project I work on is not only functional but
@@ -396,15 +404,15 @@ const About = () => {
           </motion.div>
 
           <motion.div
-            className="portfolio-card p-6 shadow-lg"
+            className="portfolio-card p-4 sm:p-6 shadow-lg"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="flex flex-wrap border-b border-secondary mb-8">
+            <div className="flex flex-wrap border-b border-secondary mb-6 sm:mb-8">
               <button
-                className={`py-4 px-6 font-medium relative transition-all duration-300 ${
+                className={`py-3 px-4 sm:py-4 sm:px-6 font-medium relative transition-all duration-300 text-sm sm:text-base ${
                   activeTab === "skills"
                     ? "text-primary border-b-2 border-primary"
                     : "text-foreground/60 hover:text-foreground"
@@ -415,7 +423,7 @@ const About = () => {
                 Skills
               </button>
               <button
-                className={`py-4 px-6 font-medium relative transition-all duration-300 ${
+                className={`py-3 px-4 sm:py-4 sm:px-6 font-medium relative transition-all duration-300 text-sm sm:text-base ${
                   activeTab === "experience"
                     ? "text-primary border-b-2 border-primary"
                     : "text-foreground/60 hover:text-foreground"
@@ -426,7 +434,7 @@ const About = () => {
                 Experience
               </button>
               <button
-                className={`py-4 px-6 font-medium relative transition-all duration-300 ${
+                className={`py-3 px-4 sm:py-4 sm:px-6 font-medium relative transition-all duration-300 text-sm sm:text-base ${
                   activeTab === "education"
                     ? "text-primary border-b-2 border-primary"
                     : "text-foreground/60 hover:text-foreground"
@@ -442,17 +450,17 @@ const About = () => {
               variants={containerVariants}
               initial="hidden"
               animate="visible"
-              className="max-h-[400px] overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-primary scrollbar-track-secondary scrollbar-rounded"
+              className="max-h-[300px] sm:max-h-[400px] overflow-y-auto pr-2 sm:pr-4 scrollbar-hide scrollbar-hide-mobile"
             >
               {activeTab === "skills" ? (
                 <div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6">
                     {/* Frontend Skills Column */}
-                    <div className="bg-background rounded-xl p-4 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-secondary/50">
-                      <h4 className="font-bold text-base mb-3 capitalize text-primary">
+                    <div className="bg-background rounded-xl p-3 sm:p-4 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-secondary/50">
+                      <h4 className="font-bold text-base mb-2 sm:mb-3 capitalize text-primary">
                         Frontend Skills
                       </h4>
-                      <div className="space-y-4">
+                      <div className="space-y-3 sm:space-y-4">
                         {skills
                           .filter((skill) => skill.category === "frontend")
                           .map((skill, index) => (
@@ -466,13 +474,13 @@ const About = () => {
                     </div>
 
                     {/* Backend, Design, and Database Skills Column */}
-                    <div className="space-y-4">
+                    <div className="space-y-3 sm:space-y-4">
                       {/* Backend Skills */}
-                      <div className="bg-background rounded-xl p-4 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-secondary/50">
-                        <h4 className="font-bold text-base mb-3 capitalize text-primary">
+                      <div className="bg-background rounded-xl p-3 sm:p-4 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-secondary/50">
+                        <h4 className="font-bold text-base mb-2 sm:mb-3 capitalize text-primary">
                           Backend Skills
                         </h4>
-                        <div className="space-y-4">
+                        <div className="space-y-3 sm:space-y-4">
                           {skills
                             .filter((skill) => skill.category === "backend")
                             .map((skill, index) => (
@@ -486,11 +494,11 @@ const About = () => {
                       </div>
 
                       {/* Database Skills */}
-                      <div className="bg-background rounded-xl p-4 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-secondary/50">
-                        <h4 className="font-bold text-base mb-3 capitalize text-primary">
+                      <div className="bg-background rounded-xl p-3 sm:p-4 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-secondary/50">
+                        <h4 className="font-bold text-base mb-2 sm:mb-3 capitalize text-primary">
                           Database Skills
                         </h4>
-                        <div className="space-y-4">
+                        <div className="space-y-3 sm:space-y-4">
                           {skills
                             .filter((skill) => skill.category === "database")
                             .map((skill, index) => (
@@ -504,11 +512,11 @@ const About = () => {
                       </div>
 
                       {/* Design Skills */}
-                      <div className="bg-background rounded-xl p-4 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-secondary/50">
-                        <h4 className="font-bold text-base mb-3 capitalize text-primary">
+                      <div className="bg-background rounded-xl p-3 sm:p-4 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-secondary/50">
+                        <h4 className="font-bold text-base mb-2 sm:mb-3 capitalize text-primary">
                           Design Skills
                         </h4>
-                        <div className="space-y-4">
+                        <div className="space-y-3 sm:space-y-4">
                           {skills
                             .filter((skill) => skill.category === "design")
                             .map((skill, index) => (

@@ -94,7 +94,7 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="min-h-hero-responsive flex flex-col justify-center pt-20 pb-16 sm:pt-32 sm:pb-20 relative overflow-hidden"
+      className="min-h-hero-responsive flex flex-col justify-center pt-20 pb-16 sm:pt-32 sm:pb-20 relative overflow-hidden px-4 sm:px-6 lg:px-12 xl:px-24"
       style={{ fontFamily: "var(--font-jetbrains-mono)" }}
     >
       <canvas

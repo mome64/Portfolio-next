@@ -277,7 +277,7 @@ const Contact = () => {
                     onChange={handleChange}
                     className={`w-full px-3 py-2.5 sm:px-4 sm:py-3 bg-secondary rounded-consistent focus:outline-none focus:ring-2 ${
                       errors.name ? "focus:ring-red-500" : "focus:ring-primary"
-                    } transition-all shadow-sm text-sm sm:text-base dark:bg-secondary/30 dark:text-foreground`}
+                    } transition-all shadow-sm text-sm sm:text-base dark:bg-secondary/30 dark:text-foreground border border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary`}
                     placeholder="Your name"
                     style={{ fontFamily: "var(--font-jetbrains-mono)" }}
                   />
@@ -309,7 +309,7 @@ const Contact = () => {
                     onChange={handleChange}
                     className={`w-full px-3 py-2.5 sm:px-4 sm:py-3 bg-secondary rounded-consistent focus:outline-none focus:ring-2 ${
                       errors.email ? "focus:ring-red-500" : "focus:ring-primary"
-                    } transition-all shadow-sm text-sm sm:text-base dark:bg-secondary/30 dark:text-foreground`}
+                    } transition-all shadow-sm text-sm sm:text-base dark:bg-secondary/30 dark:text-foreground border border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary`}
                     placeholder="your.email@example.com"
                     style={{ fontFamily: "var(--font-jetbrains-mono)" }}
                   />
@@ -343,7 +343,7 @@ const Contact = () => {
                       errors.message
                         ? "focus:ring-red-500"
                         : "focus:ring-primary"
-                    } transition-all shadow-sm text-sm sm:text-base dark:bg-secondary/30 dark:text-foreground resize-y min-h-[100px] sm:min-h-[120px]`}
+                    } transition-all shadow-sm text-sm sm:text-base dark:bg-secondary/30 dark:text-foreground resize-y min-h-[100px] sm:min-h-[120px] border border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary`}
                     placeholder="Your message here..."
                     style={{ fontFamily: "var(--font-jetbrains-mono)" }}
                   ></textarea>

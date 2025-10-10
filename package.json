@@ -21,7 +21,8 @@
     "react-dom": "19.1.0",
     "react-ga4": "^2.1.0",
     "react-icons": "^5.5.0",
-    "react-intersection-observer": "^9.16.0"
+    "react-intersection-observer": "^9.16.0",
+    "sharp": "^0.34.4"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
