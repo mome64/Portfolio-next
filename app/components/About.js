@@ -133,7 +133,7 @@ const About = () => {
       institution: "Haramaya University",
       period: "2022 - 2025",
       description:
-        'Graduated with honors. Specialized in information systems and data management. Completed thesis on &quot;Information Systems in Modern Organizations&quot;.',
+        "Graduated with honors. Specialized in information systems and data management. Completed thesis on &quot;Information Systems in Modern Organizations&quot;.",
       icon: <FiBookOpen />,
     },
     {

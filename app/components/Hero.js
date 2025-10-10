@@ -144,7 +144,8 @@ const Hero = () => {
             className="text-sm sm:text-base md:text-lg text-foreground/70 mb-8 sm:mb-10 max-w-xl mx-auto lg:mx-0"
           >
             I create beautiful, responsive, and user-friendly web applications
-            with modern technologies. Let&#39;s build something amazing together!
+            with modern technologies. Let&#39;s build something amazing
+            together!
           </motion.p>
 
           <motion.div

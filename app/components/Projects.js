@@ -13,7 +13,6 @@ import ProjectModal from "./ProjectModal"; // Added missing import
 import Image from "next/image";
 
 const Projects = ({ isVisible = true }) => {
-
   const allProjects = [
     {
       id: 1,
@@ -221,7 +220,10 @@ const Projects = ({ isVisible = true }) => {
     <section
       id="projects"
       className="compact-section overflow-x-hidden"
-      style={{ fontFamily: "var(--font-jetbrains-mono)", display: isVisible ? 'block' : 'none' }}
+      style={{
+        fontFamily: "var(--font-jetbrains-mono)",
+        display: isVisible ? "block" : "none",
+      }}
     >
       {" "}
       {/* Added overflow-x-hidden here */}
@@ -391,10 +393,7 @@ const Projects = ({ isVisible = true }) => {
                       size={14}
                       className="hidden sm:block md:hidden"
                     />
-                    <FiExternalLink
-                      size={16}
-                      className="hidden md:block"
-                    />{" "}
+                    <FiExternalLink size={16} className="hidden md:block" />{" "}
                     <span className="hidden xs:inline">Live Demo</span>
                   </a>
                   <a
@@ -407,7 +406,7 @@ const Projects = ({ isVisible = true }) => {
                   >
                     <FiGithub size={12} className="sm:hidden" />
                     <FiGithub size={14} className="hidden sm:block md:hidden" />
-                    <FiGithub size={16} className="hidden md:block" /> 
+                    <FiGithub size={16} className="hidden md:block" />
                     <span className="hidden xs:inline">GitHub</span>
                   </a>
                 </div>
@@ -416,7 +415,6 @@ const Projects = ({ isVisible = true }) => {
           ))}
         </AnimatePresence>
       </div>
-
       {/* Horizontal scroll for mobile devices */}
       <div className="sm:hidden flex overflow-x-auto pb-4 -mx-4 px-4 gap-4 scrollbar-hide">
         <div className="flex gap-4 w-max">

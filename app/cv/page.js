@@ -34,7 +34,9 @@ const CVPage = () => {
           <h1 className="text-4xl font-bold text-gray-900 mb-2">
             Professional Resume
           </h1>
-          <p className="text-gray-600 mb-6 text-lg">View or download my CV in PDF format</p>
+          <p className="text-gray-600 mb-6 text-lg">
+            View or download my CV in PDF format
+          </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={togglePreview}
@@ -49,7 +51,7 @@ const CVPage = () => {
               Download PDF
             </button>
           </div>
-          
+
           {showPreview && (
             <div className="mt-4">
               <button
@@ -104,7 +106,13 @@ const CVPage = () => {
                 )}
               </div>
               <div className="p-4 bg-gray-50 text-center text-sm text-gray-500">
-                Having trouble viewing? <button onClick={downloadCV} className="text-blue-600 hover:underline">Download the PDF</button>
+                Having trouble viewing?{" "}
+                <button
+                  onClick={downloadCV}
+                  className="text-blue-600 hover:underline"
+                >
+                  Download the PDF
+                </button>
               </div>
             </div>
           ) : !showPreview && client ? (
@@ -114,8 +122,9 @@ const CVPage = () => {
                   Professional Resume
                 </h2>
                 <p className="text-gray-600 mb-8 max-w-2xl text-lg">
-                  View an interactive preview of my CV or download the PDF version. 
-                  The preview allows you to scroll through all pages without leaving the page.
+                  View an interactive preview of my CV or download the PDF
+                  version. The preview allows you to scroll through all pages
+                  without leaving the page.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <button
@@ -132,33 +141,46 @@ const CVPage = () => {
                   </button>
                 </div>
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl mt-8">
                 <div className="bg-blue-50 p-6 rounded-xl border border-blue-100">
                   <div className="text-blue-500 text-3xl mb-3">🔍</div>
-                  <h3 className="font-bold text-lg mb-2">Interactive Preview</h3>
-                  <p className="text-gray-600 text-sm">View all pages of my CV directly in your browser without downloading.</p>
+                  <h3 className="font-bold text-lg mb-2">
+                    Interactive Preview
+                  </h3>
+                  <p className="text-gray-600 text-sm">
+                    View all pages of my CV directly in your browser without
+                    downloading.
+                  </p>
                 </div>
-                
+
                 <div className="bg-green-50 p-6 rounded-xl border border-green-100">
                   <div className="text-green-500 text-3xl mb-3">⚡</div>
                   <h3 className="font-bold text-lg mb-2">Fast Access</h3>
-                  <p className="text-gray-600 text-sm">Quickly navigate through sections with our optimized PDF viewer.</p>
+                  <p className="text-gray-600 text-sm">
+                    Quickly navigate through sections with our optimized PDF
+                    viewer.
+                  </p>
                 </div>
-                
+
                 <div className="bg-purple-50 p-6 rounded-xl border border-purple-100">
                   <div className="text-purple-500 text-3xl mb-3">📥</div>
                   <h3 className="font-bold text-lg mb-2">Easy Download</h3>
-                  <p className="text-gray-600 text-sm">Download the high-quality PDF version for offline viewing.</p>
+                  <p className="text-gray-600 text-sm">
+                    Download the high-quality PDF version for offline viewing.
+                  </p>
                 </div>
               </div>
-              
+
               <div className="mt-12 bg-gray-100 border-2 border-dashed border-gray-300 rounded-2xl w-full max-w-2xl h-80 flex items-center justify-center">
                 <div className="text-center p-6">
                   <div className="text-6xl mb-4">📄</div>
-                  <h3 className="text-xl font-bold text-gray-700 mb-2">CV Preview</h3>
+                  <h3 className="text-xl font-bold text-gray-700 mb-2">
+                    CV Preview
+                  </h3>
                   <p className="text-gray-500">
-                    Click &quot;View Interactive Preview&quot; to see my complete resume
+                    Click &quot;View Interactive Preview&quot; to see my
+                    complete resume
                   </p>
                 </div>
               </div>
@@ -172,9 +194,17 @@ const CVPage = () => {
             </div>
           )}
         </div>
-        
+
         <div className="mt-8 text-center text-gray-500 text-sm">
-          <p>Need help? Contact me at <a href="mailto:mesoudmohammed393@gmail.com" className="text-blue-600 hover:underline">mesoudmohammed393@gmail.com</a></p>
+          <p>
+            Need help? Contact me at{" "}
+            <a
+              href="mailto:mesoudmohammed393@gmail.com"
+              className="text-blue-600 hover:underline"
+            >
+              mesoudmohammed393@gmail.com
+            </a>
+          </p>
         </div>
       </div>
     </div>
