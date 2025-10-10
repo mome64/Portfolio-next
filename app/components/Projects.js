@@ -10,6 +10,7 @@ import {
   FiSearch,
 } from "react-icons/fi";
 import ProjectModal from "./ProjectModal"; // Added missing import
+import Image from "next/image";
 
 const Projects = ({ isVisible = true }) => {
   // Don't render anything if not visible
@@ -331,11 +332,14 @@ const Projects = ({ isVisible = true }) => {
               layout
             >
               <div className="h-40 sm:h-48 bg-gray-200 border-2 border-dashed w-full relative overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="project-card-image group-hover:scale-105"
-                />
+                <div className="project-card-image group-hover:scale-105 relative w-full h-full">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
                 <div className="project-card-overlay">
                   <span className="px-3 py-1.5 sm:px-4 sm:py-2 bg-primary text-white text-xs sm:text-sm rounded-full shadow-md">
                     View Details
@@ -431,11 +435,14 @@ const Projects = ({ isVisible = true }) => {
               layout
             >
               <div className="h-40 bg-gray-200 border-2 border-dashed w-full relative overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="project-card-image group-hover:scale-105"
-                />
+                <div className="project-card-image group-hover:scale-105 relative w-full h-full">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
                 <div className="project-card-overlay">
                   <span className="px-3 py-1.5 bg-primary text-white text-xs rounded-full shadow-md">
                     View Details

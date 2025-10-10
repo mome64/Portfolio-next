@@ -15,6 +15,7 @@ import {
   FiSend,
 } from "react-icons/fi";
 import LazySection from "./LazySection";
+import Image from "next/image";
 
 const Footer = () => {
   const { theme, setTheme } = useTheme();
@@ -139,15 +140,19 @@ const Footer = () => {
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
-              <img
-                src={
-                  theme === "dark"
-                    ? "/images/logo-dark.jpg"
-                    : "/images/Logo.jpg"
-                }
-                alt="Mohammed Mesoud Logo"
-                className="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 transition-transform duration-300 group-hover:scale-105 rounded-full mx-auto"
-              />
+              <div className="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 transition-transform duration-300 group-hover:scale-105 rounded-full mx-auto overflow-hidden">
+                <Image
+                  src={
+                    theme === "dark"
+                      ? "/images/logo-dark.jpg"
+                      : "/images/Logo.jpg"
+                  }
+                  alt="Mohammed Mesoud Logo"
+                  width={96}
+                  height={96}
+                  className="object-cover w-full h-full"
+                />
+              </div>
             </motion.h3>
             <motion.p
               className="text-foreground/70 mb-3 sm:mb-4 text-xs sm:text-sm md:text-base"

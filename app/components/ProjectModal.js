@@ -9,6 +9,7 @@ import {
   FiCode,
   FiSmartphone,
 } from "react-icons/fi";
+import Image from "next/image";
 
 const ProjectModal = ({ project, isOpen, onClose }) => {
   if (!project) return null;
@@ -56,11 +57,14 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
               </button>
 
               <div className="h-40 sm:h-48 md:h-64 w-full relative overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="project-modal-image w-full h-full object-cover"
-                />
+                <div className="project-modal-image w-full h-full relative">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent"></div>
               </div>
 

@@ -5,6 +5,7 @@ import { useTheme } from "next-themes";
 import { FiSun, FiMoon, FiMenu, FiX } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 const Header = () => {
   const { theme, setTheme } = useTheme();
@@ -103,15 +104,23 @@ const Header = () => {
             onClick={() => handleNavClick("#home")}
             className="flex items-center"
           >
-            <img
-              src={
-                theme === "dark" ? "/images/logo-dark.jpg" : "/images/Logo.jpg"
-              }
-              alt="Mohammed Mesoud Logo"
-              className={`transition-all duration-300 rounded-full ${
+            <div
+              className={`transition-all duration-300 rounded-full overflow-hidden ${
                 scrolled ? "h-14 w-14" : "h-20 w-20"
               }`}
-            />
+            >
+              <Image
+                src={
+                  theme === "dark"
+                    ? "/images/logo-dark.jpg"
+                    : "/images/Logo.jpg"
+                }
+                alt="Mohammed Mesoud Logo"
+                width={scrolled ? 56 : 80}
+                height={scrolled ? 56 : 80}
+                className="object-cover"
+              />
+            </div>
           </button>
         </motion.div>
 
