@@ -1,13 +1,10 @@
-import { Suspense } from "react";
-import AnalyticsWrapper from "../components/Analytics";
+import NotFoundAnalytics from "./NotFoundAnalytics";
 
 export default function NotFoundLayout({ children }) {
   return (
     <>
       {children}
-      <Suspense fallback={null}>
-        <AnalyticsWrapper />
-      </Suspense>
+      <NotFoundAnalytics />
     </>
   );
 }
