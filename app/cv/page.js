@@ -158,7 +158,7 @@ const CVPage = () => {
                   <div className="text-6xl mb-4">📄</div>
                   <h3 className="text-xl font-bold text-gray-700 mb-2">CV Preview</h3>
                   <p className="text-gray-500">
-                    Click "View Interactive Preview" to see my complete resume
+                    Click &quot;View Interactive Preview&quot; to see my complete resume
                   </p>
                 </div>
               </div>

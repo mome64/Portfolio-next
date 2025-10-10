@@ -75,7 +75,7 @@ const useTypewriter = (text, speed = 100, delay = 0) => {
         clearTimeout(timeoutRef.current);
       }
     };
-  }, [currentIndex, isDeleting, text, speed, delay]); // Removed isCompleted from dependencies
+  }, [currentIndex, isDeleting, isCompleted, text, speed, delay]);
 
   // Function to manually restart the typewriter
   const restart = useCallback(() => {

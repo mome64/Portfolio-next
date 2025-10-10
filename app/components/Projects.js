@@ -13,10 +13,6 @@ import ProjectModal from "./ProjectModal"; // Added missing import
 import Image from "next/image";
 
 const Projects = ({ isVisible = true }) => {
-  // Don't render anything if not visible
-  if (!isVisible) {
-    return null;
-  }
 
   const allProjects = [
     {
@@ -130,9 +126,12 @@ const Projects = ({ isVisible = true }) => {
     ...new Set(allProjects.map((project) => project.category)),
   ];
 
+  // Wrap allProjects in useMemo to prevent it from changing on every render
+  const projects = useMemo(() => allProjects, []);
+
   // Improved filtering with useMemo for better performance
   const filteredProjects = useMemo(() => {
-    let result = allProjects;
+    let result = projects;
 
     if (selectedCategory !== "All") {
       result = result.filter(
@@ -175,7 +174,7 @@ const Projects = ({ isVisible = true }) => {
     }
 
     return result;
-  }, [selectedCategory, debouncedSearchQuery, allProjects]);
+  }, [selectedCategory, debouncedSearchQuery, projects]);
 
   const openModal = (project) => {
     setSelectedProject(project);
@@ -222,7 +221,7 @@ const Projects = ({ isVisible = true }) => {
     <section
       id="projects"
       className="compact-section overflow-x-hidden"
-      style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+      style={{ fontFamily: "var(--font-jetbrains-mono)", display: isVisible ? 'block' : 'none' }}
     >
       {" "}
       {/* Added overflow-x-hidden here */}

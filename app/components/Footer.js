@@ -208,7 +208,7 @@ const Footer = () => {
                 whileHover={{ y: -1 }}
                 transition={{ duration: 0.2 }}
               >
-                Feel free to reach out if you're looking for a developer.
+                Feel free to reach out if you&#39;re looking for a developer.
               </motion.p>
               <motion.div
                 whileHover={{ scale: 1.02 }}

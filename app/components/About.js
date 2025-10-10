@@ -133,7 +133,7 @@ const About = () => {
       institution: "Haramaya University",
       period: "2022 - 2025",
       description:
-        'Graduated with honors. Specialized in information systems and data management. Completed thesis on "Information Systems in Modern Organizations".',
+        'Graduated with honors. Specialized in information systems and data management. Completed thesis on &quot;Information Systems in Modern Organizations&quot;.',
       icon: <FiBookOpen />,
     },
     {
@@ -188,7 +188,7 @@ const About = () => {
           transition: { duration: 1, delay: index * 0.1 },
         });
       }
-    }, [isVisible, skill.level, index, controls]);
+    }, [skill.level, index, controls]);
 
     return (
       <motion.div variants={itemVariants} className="mb-4">

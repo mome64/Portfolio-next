@@ -62,7 +62,7 @@ const Testimonials = () => {
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [isHovered]);
+  }, [isHovered, nextTestimonial]);
 
   const renderStars = (rating) => {
     return Array.from({ length: 5 }, (_, i) => (
@@ -115,7 +115,7 @@ const Testimonials = () => {
                   {renderStars(testimonial.rating)}
                 </div>
                 <div className="text-3xl text-primary/10 mb-3 text-center">
-                  "
+                  &quot;
                 </div>
                 <p className="text-sm text-foreground/90 italic mb-5 text-center leading-relaxed">
                   {testimonial.quote}
@@ -183,7 +183,7 @@ const Testimonials = () => {
                     {renderStars(testimonial.rating)}
                   </div>
                   <div className="text-4xl text-primary/10 mb-4 text-center">
-                    "
+                    &quot;
                   </div>
                   <p className="text-sm md:text-base text-foreground/90 italic mb-6 text-center leading-relaxed">
                     {testimonial.quote}

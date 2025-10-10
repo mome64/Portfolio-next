@@ -112,7 +112,7 @@ const Hero = () => {
           {/* Greeting Line */}
           <motion.div variants={itemVariants}>
             <h3 className="text-lg sm:text-xl md:text-2xl font-medium text-foreground/80 mb-1.5 sm:mb-2">
-              Hi, I'm
+              Hi, I&#39;m
             </h3>
           </motion.div>
 
@@ -144,7 +144,7 @@ const Hero = () => {
             className="text-sm sm:text-base md:text-lg text-foreground/70 mb-8 sm:mb-10 max-w-xl mx-auto lg:mx-0"
           >
             I create beautiful, responsive, and user-friendly web applications
-            with modern technologies. Let's build something amazing together!
+            with modern technologies. Let&#39;s build something amazing together!
           </motion.p>
 
           <motion.div
