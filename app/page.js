@@ -36,12 +36,12 @@ export default function Home() {
 
   return (
     <div
-      className="min-h-screen"
+      className="min-h-screen scrollbar-hide"
       style={{ fontFamily: "var(--font-jetbrains-mono)" }}
     >
       <ScrollProgress />
       <Header />
-      <main className="pt-24">
+      <main className="pt-20 sm:pt-24">
         <Hero />
         <LazySection animation="slideUp">
           <About />

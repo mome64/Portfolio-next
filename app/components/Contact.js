@@ -191,7 +191,7 @@ const Contact = () => {
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -207,18 +207,18 @@ const Contact = () => {
                 <motion.a
                   key={index}
                   href={info.link}
-                  className="flex items-start gap-6 p-6 portfolio-card hover:bg-background/50 transition-colors group shadow-md hover:shadow-lg dark:hover:bg-secondary/30"
+                  className="flex items-start gap-4 sm:gap-6 p-4 sm:p-6 portfolio-card hover:bg-background/50 transition-colors group shadow-md hover:shadow-lg dark:hover:bg-secondary/30"
                   whileHover={{ x: 10 }}
                   style={{ fontFamily: "var(--font-jetbrains-mono)" }}
                 >
-                  <div className="text-primary mt-1 group-hover:scale-110 transition-transform">
+                  <div className="text-primary mt-1 group-hover:scale-110 transition-transform text-xl sm:text-2xl">
                     {info.icon}
                   </div>
                   <div>
-                    <h4 className="font-semibold text-lg text-foreground leading-tight">
+                    <h4 className="font-semibold text-base sm:text-lg text-foreground leading-tight">
                       {info.title}
                     </h4>
-                    <p className="text-foreground/80 mt-2 text-base">
+                    <p className="text-foreground/80 mt-1 sm:mt-2 text-sm sm:text-base">
                       {info.value}
                     </p>
                   </div>
@@ -231,14 +231,14 @@ const Contact = () => {
             <h4 className="font-semibold text-xl mb-6 text-foreground">
               Follow Me
             </h4>
-            <div className="flex space-x-5">
+            <div className="flex space-x-4 sm:space-x-5">
               {socialLinks.map((social, index) => (
                 <motion.a
                   key={index}
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-background p-5 rounded-full text-foreground hover:bg-primary hover:text-white transition-colors shadow-consistent shadow-consistent-hover dark:bg-secondary dark:hover:bg-primary"
+                  className="bg-background p-4 sm:p-5 rounded-full text-foreground hover:bg-primary hover:text-white transition-colors shadow-consistent shadow-consistent-hover dark:bg-secondary dark:hover:bg-primary"
                   aria-label={social.label}
                   whileHover={{ y: -6, rotate: 5 }}
                   whileTap={{ scale: 0.9 }}
@@ -257,14 +257,14 @@ const Contact = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="portfolio-card p-6 md:p-8 shadow-xl relative overflow-hidden dark:bg-secondary/20">
+          <div className="portfolio-card p-4 sm:p-6 md:p-8 shadow-xl relative overflow-hidden dark:bg-secondary/20">
             <div className="absolute -top-12 -right-12 w-40 h-40 bg-primary/5 rounded-full blur-2xl"></div>
             <div className="absolute -bottom-12 -left-12 w-48 h-48 bg-primary/3 rounded-full blur-2xl"></div>
             <form onSubmit={handleSubmit} className="relative z-10">
               <div className="mb-6">
                 <label
                   htmlFor="name"
-                  className="block text-foreground font-medium mb-3 text-base"
+                  className="block text-foreground font-medium mb-2 sm:mb-3 text-sm sm:text-base"
                 >
                   Name
                 </label>
@@ -275,9 +275,9 @@ const Contact = () => {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className={`w-full px-4 py-3 bg-secondary rounded-consistent focus:outline-none focus:ring-2 ${
+                    className={`w-full px-3 py-2.5 sm:px-4 sm:py-3 bg-secondary rounded-consistent focus:outline-none focus:ring-2 ${
                       errors.name ? "focus:ring-red-500" : "focus:ring-primary"
-                    } transition-all shadow-sm text-base dark:bg-secondary/30 dark:text-foreground`}
+                    } transition-all shadow-sm text-sm sm:text-base dark:bg-secondary/30 dark:text-foreground`}
                     placeholder="Your name"
                     style={{ fontFamily: "var(--font-jetbrains-mono)" }}
                   />
@@ -296,7 +296,7 @@ const Contact = () => {
               <div className="mb-6">
                 <label
                   htmlFor="email"
-                  className="block text-foreground font-medium mb-3 text-base"
+                  className="block text-foreground font-medium mb-2 sm:mb-3 text-sm sm:text-base"
                 >
                   Email
                 </label>
@@ -307,9 +307,9 @@ const Contact = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className={`w-full px-4 py-3 bg-secondary rounded-consistent focus:outline-none focus:ring-2 ${
+                    className={`w-full px-3 py-2.5 sm:px-4 sm:py-3 bg-secondary rounded-consistent focus:outline-none focus:ring-2 ${
                       errors.email ? "focus:ring-red-500" : "focus:ring-primary"
-                    } transition-all shadow-sm text-base dark:bg-secondary/30 dark:text-foreground`}
+                    } transition-all shadow-sm text-sm sm:text-base dark:bg-secondary/30 dark:text-foreground`}
                     placeholder="your.email@example.com"
                     style={{ fontFamily: "var(--font-jetbrains-mono)" }}
                   />
@@ -328,7 +328,7 @@ const Contact = () => {
               <div className="mb-6">
                 <label
                   htmlFor="message"
-                  className="block text-foreground font-medium mb-3 text-base"
+                  className="block text-foreground font-medium mb-2 sm:mb-3 text-sm sm:text-base"
                 >
                   Message
                 </label>
@@ -339,11 +339,11 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     rows={4}
-                    className={`w-full px-4 py-3 bg-secondary rounded-consistent focus:outline-none focus:ring-2 ${
+                    className={`w-full px-3 py-2.5 sm:px-4 sm:py-3 bg-secondary rounded-consistent focus:outline-none focus:ring-2 ${
                       errors.message
                         ? "focus:ring-red-500"
                         : "focus:ring-primary"
-                    } transition-all shadow-sm text-base dark:bg-secondary/30 dark:text-foreground resize-y min-h-[120px]`}
+                    } transition-all shadow-sm text-sm sm:text-base dark:bg-secondary/30 dark:text-foreground resize-y min-h-[100px] sm:min-h-[120px]`}
                     placeholder="Your message here..."
                     style={{ fontFamily: "var(--font-jetbrains-mono)" }}
                   ></textarea>
@@ -362,7 +362,7 @@ const Contact = () => {
               <motion.button
                 type="submit"
                 disabled={isSubmitting}
-                className="portfolio-btn portfolio-btn-primary w-full relative overflow-hidden shadow-lg hover:shadow-xl text-base py-3.5 flex items-center justify-center"
+                className="portfolio-btn portfolio-btn-primary w-full relative overflow-hidden shadow-lg hover:shadow-xl text-sm sm:text-base py-3 flex items-center justify-center"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 style={{ fontFamily: "var(--font-jetbrains-mono)" }}
@@ -405,7 +405,7 @@ const Contact = () => {
               <AnimatePresence>
                 {submitStatus === "success" && (
                   <motion.div
-                    className="mt-6 p-6 bg-green-500/20 text-green-700 rounded-2xl text-center flex items-center justify-center gap-3 shadow-lg text-lg dark:bg-green-500/10 dark:text-green-400 border border-green-500/30"
+                    className="mt-4 sm:mt-6 p-4 sm:p-6 bg-green-500/20 text-green-700 rounded-2xl text-center flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 shadow-lg text-base sm:text-lg dark:bg-green-500/10 dark:text-green-400 border border-green-500/30"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
@@ -436,7 +436,7 @@ const Contact = () => {
                 )}
                 {submitStatus === "error" && (
                   <motion.div
-                    className="mt-6 p-6 bg-red-500/20 text-red-700 rounded-2xl text-center flex items-center justify-center gap-3 shadow-lg text-lg dark:bg-red-500/10 dark:text-red-400 border border-red-500/30"
+                    className="mt-4 sm:mt-6 p-4 sm:p-6 bg-red-500/20 text-red-700 rounded-2xl text-center flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 shadow-lg text-base sm:text-lg dark:bg-red-500/10 dark:text-red-400 border border-red-500/30"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}

@@ -88,7 +88,7 @@ const Header = () => {
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/90 dark:bg-[#121212]/90 backdrop-blur-lg shadow-md py-4"
+          ? "bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg shadow-md py-4"
           : "bg-transparent py-6"
       }`}
     >
@@ -101,19 +101,15 @@ const Header = () => {
         >
           <button
             onClick={() => handleNavClick("#home")}
-            className="text-2xl font-bold"
-            style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+            className="flex items-center"
           >
-            <span
-              className={`transition-colors duration-300 ${
-                scrolled
-                  ? "text-gray-800 dark:text-gray-200"
-                  : "text-foreground"
+            <img
+              src="/images/Logo.jpg"
+              alt="Mohammed Mesoud Logo"
+              className={`transition-all duration-300 rounded-full p-1 bg-white/80 dark:bg-gray-200/80 object-cover ${
+                scrolled ? "h-14 w-14" : "h-20 w-20"
               }`}
-            >
-              Mohammed
-            </span>
-            <span className="text-[#ff7f00]"> Mesoud</span>
+            />
           </button>
         </motion.div>
 
@@ -130,10 +126,10 @@ const Header = () => {
                 onClick={() => handleNavClick(item.href)}
                 className={`relative px-4 py-3 text-sm font-medium tracking-wide transition-colors duration-300 ${
                   activeSection === item.name.split("#")[1]
-                    ? "text-[#ff7f00]"
+                    ? "text-[#ff7f00] dark:text-[#ff7f00]"
                     : scrolled
-                    ? "text-gray-800 dark:text-gray-200 hover:text-[#ff7f00]"
-                    : "text-foreground hover:text-[#ff7f00]"
+                    ? "text-gray-800 hover:text-[#ff7f00] dark:text-gray-200 dark:hover:text-[#ff7f00]"
+                    : "text-foreground hover:text-[#ff7f00] dark:text-gray-200 dark:hover:text-[#ff7f00]"
                 }`}
                 style={{ fontFamily: "var(--font-jetbrains-mono)" }}
               >
@@ -168,8 +164,8 @@ const Header = () => {
             onClick={toggleTheme}
             className={`p-3 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#ff7f00] focus:ring-offset-2 ${
               scrolled
-                ? "bg-secondary/80 text-gray-800 dark:text-gray-200 hover:text-[#ff7f00]"
-                : "bg-secondary/50 text-foreground hover:text-[#ff7f00]"
+                ? "bg-secondary/80 text-gray-800 hover:text-[#ff7f00] dark:bg-gray-800/80 dark:text-gray-200 dark:hover:text-[#ff7f00]"
+                : "bg-secondary/50 text-foreground hover:text-[#ff7f00] dark:bg-gray-800/50 dark:text-gray-200 dark:hover:text-[#ff7f00]"
             }`}
             aria-label="Toggle theme"
             whileHover={{ rotate: 30 }}
@@ -184,7 +180,10 @@ const Header = () => {
                   exit={{ opacity: 0, rotate: 90 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <FiMoon size={22} />
+                  <FiMoon
+                    className="text-gray-800 dark:text-gray-200"
+                    size={22}
+                  />
                 </motion.div>
               ) : (
                 <motion.div
@@ -194,7 +193,10 @@ const Header = () => {
                   exit={{ opacity: 0, rotate: 90 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <FiSun size={22} />
+                  <FiSun
+                    className="text-gray-800 dark:text-gray-200"
+                    size={22}
+                  />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -205,8 +207,8 @@ const Header = () => {
             onClick={toggleMenu}
             className={`md:hidden p-3 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#ff7f00] focus:ring-offset-2 ${
               scrolled
-                ? "bg-secondary/80 text-gray-800 dark:text-gray-200 hover:text-[#ff7f00]"
-                : "bg-secondary/50 text-foreground hover:text-[#ff7f00]"
+                ? "bg-secondary/80 text-gray-800 hover:text-[#ff7f00] dark:bg-gray-800/80 dark:text-gray-200 dark:hover:text-[#ff7f00]"
+                : "bg-secondary/50 text-foreground hover:text-[#ff7f00] dark:bg-gray-800/50 dark:text-gray-200 dark:hover:text-[#ff7f00]"
             }`}
             aria-label="Toggle menu"
             whileTap={{ scale: 0.9 }}
@@ -220,7 +222,7 @@ const Header = () => {
                   exit={{ opacity: 0, rotate: 90 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <FiX size={24} />
+                  <FiX className="text-gray-800 dark:text-gray-200" size={24} />
                 </motion.div>
               ) : (
                 <motion.div
@@ -230,7 +232,10 @@ const Header = () => {
                   exit={{ opacity: 0, rotate: 90 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <FiMenu size={24} />
+                  <FiMenu
+                    className="text-gray-800 dark:text-gray-200"
+                    size={24}
+                  />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -242,7 +247,7 @@ const Header = () => {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.nav
-            className="md:hidden bg-white dark:bg-[#121212] border-t border-secondary/20 py-6 px-4"
+            className="md:hidden bg-white dark:bg-gray-800 border-t border-secondary/20 dark:border-[#333333] py-6 px-4"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -262,8 +267,8 @@ const Header = () => {
                     onClick={() => handleNavClick(item.href)}
                     className={`block py-4 text-lg font-medium rounded-lg px-4 transition-colors duration-300 ${
                       activeSection === item.name.split("#")[1]
-                        ? "text-[#ff7f00]"
-                        : "text-foreground hover:text-[#ff7f00]"
+                        ? "text-[#ff7f00] dark:text-[#ff7f00]"
+                        : "text-foreground hover:text-[#ff7f00] dark:text-gray-200 dark:hover:text-[#ff7f00]"
                     }`}
                     style={{ fontFamily: "var(--font-jetbrains-mono)" }}
                   >
@@ -280,7 +285,7 @@ const Header = () => {
               >
                 <button
                   onClick={() => handleNavClick("#contact")}
-                  className="inline-flex items-center gap-2.5 text-foreground hover:text-[#ff7f00] transition-colors duration-300 py-4 text-lg font-medium rounded-lg px-4 w-full"
+                  className="inline-flex items-center gap-2.5 text-foreground hover:text-[#ff7f00] dark:text-gray-200 dark:hover:text-[#ff7f00] transition-colors duration-300 py-4 text-lg font-medium rounded-lg px-4 w-full"
                   style={{ fontFamily: "var(--font-jetbrains-mono)" }}
                 >
                   Hire Me

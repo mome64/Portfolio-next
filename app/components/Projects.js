@@ -314,7 +314,8 @@ const Projects = ({ isVisible = true }) => {
         </div>
       </motion.div>
       {/* Projects Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+      {/* Horizontal scroll for mobile, grid for larger screens */}
+      <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
         <AnimatePresence mode="popLayout">
           {filteredProjects.map((project, index) => (
             <motion.div
@@ -357,54 +358,148 @@ const Projects = ({ isVisible = true }) => {
                   {project.description}
                 </p>
 
-                <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-6">
+                <div className="flex flex-wrap gap-1 sm:gap-1.5 mb-3 sm:mb-4 md:mb-6">
                   {project.tech.slice(0, 3).map((tech, techIndex) => (
                     <span
                       key={techIndex}
-                      className="tech-tag text-xs sm:text-sm px-2 py-1 sm:px-3 sm:py-1.5 btn-enhanced"
+                      className="tech-tag text-xs px-2 py-1 sm:px-2.5 sm:py-1.5 md:px-3 md:py-1.5 btn-enhanced"
                     >
                       {tech}
                     </span>
                   ))}
                   {project.tech.length > 3 && (
-                    <span className="text-xs sm:text-sm px-2 py-1 sm:px-3 sm:py-1.5 bg-secondary text-foreground/60 rounded-full">
+                    <span className="text-xs px-2 py-1 sm:px-2.5 sm:py-1.5 md:px-3 md:py-1.5 bg-secondary text-foreground/60 rounded-full">
                       +{project.tech.length - 3}
                     </span>
                   )}
                 </div>
 
-                <div className="flex gap-3 sm:gap-4 pt-4 sm:pt-5 border-t border-secondary/50">
+                <div className="flex gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-5 border-t border-secondary/50">
                   <a
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="project-link project-link-primary text-sm btn-enhanced"
+                    className="project-link project-link-primary text-xs sm:text-sm md:text-base btn-enhanced flex-1 text-center"
                     onClick={(e) => e.stopPropagation()}
                     style={{ fontFamily: "var(--font-jetbrains-mono)" }}
                   >
-                    <FiExternalLink size={14} className="sm:hidden" />
+                    <FiExternalLink size={12} className="sm:hidden" />
+                    <FiExternalLink
+                      size={14}
+                      className="hidden sm:block md:hidden"
+                    />
                     <FiExternalLink
                       size={16}
-                      className="hidden sm:block"
+                      className="hidden md:block"
                     />{" "}
-                    Live Demo
+                    <span className="hidden xs:inline">Live Demo</span>
                   </a>
                   <a
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="project-link project-link-secondary text-sm btn-enhanced"
+                    className="project-link project-link-secondary text-xs sm:text-sm md:text-base btn-enhanced flex-1 text-center"
                     onClick={(e) => e.stopPropagation()}
                     style={{ fontFamily: "var(--font-jetbrains-mono)" }}
                   >
-                    <FiGithub size={14} className="sm:hidden" />
-                    <FiGithub size={16} className="hidden sm:block" /> GitHub
+                    <FiGithub size={12} className="sm:hidden" />
+                    <FiGithub size={14} className="hidden sm:block md:hidden" />
+                    <FiGithub size={16} className="hidden md:block" /> 
+                    <span className="hidden xs:inline">GitHub</span>
                   </a>
                 </div>
               </div>
             </motion.div>
           ))}
         </AnimatePresence>
+      </div>
+
+      {/* Horizontal scroll for mobile devices */}
+      <div className="sm:hidden flex overflow-x-auto pb-4 -mx-4 px-4 gap-4 scrollbar-hide">
+        <div className="flex gap-4 w-max">
+          {filteredProjects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              variants={itemVariants}
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              className="project-card group card-enhanced w-80 flex-shrink-0"
+              whileHover={{ y: -8 }}
+              transition={{ duration: 0.3 }}
+              onClick={() => openModal(project)}
+              layout
+            >
+              <div className="h-40 bg-gray-200 border-2 border-dashed w-full relative overflow-hidden">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="project-card-image group-hover:scale-105"
+                />
+                <div className="project-card-overlay">
+                  <span className="px-3 py-1.5 bg-primary text-white text-xs rounded-full shadow-md">
+                    View Details
+                  </span>
+                </div>
+              </div>
+
+              <div className="p-4">
+                <div className="flex justify-between items-start mb-3">
+                  <h3 className="text-lg font-bold leading-tight">
+                    {project.title}
+                  </h3>
+
+                  <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full whitespace-nowrap">
+                    {project.category}
+                  </span>
+                </div>
+
+                <p className="text-foreground/70 mb-4 text-sm line-clamp-2">
+                  {project.description}
+                </p>
+
+                <div className="flex flex-wrap gap-1 mb-3">
+                  {project.tech.slice(0, 3).map((tech, techIndex) => (
+                    <span
+                      key={techIndex}
+                      className="tech-tag text-xs px-2 py-1 btn-enhanced"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                  {project.tech.length > 3 && (
+                    <span className="text-xs px-2 py-1 bg-secondary text-foreground/60 rounded-full">
+                      +{project.tech.length - 3}
+                    </span>
+                  )}
+                </div>
+
+                <div className="flex gap-2 pt-3 border-t border-secondary/50">
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="project-link project-link-primary text-xs btn-enhanced flex-1 text-center"
+                    onClick={(e) => e.stopPropagation()}
+                    style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+                  >
+                    <FiExternalLink size={12} /> Live Demo
+                  </a>
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="project-link project-link-secondary text-xs btn-enhanced flex-1 text-center"
+                    onClick={(e) => e.stopPropagation()}
+                    style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+                  >
+                    <FiGithub size={12} /> GitHub
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
       {filteredProjects.length === 0 && (
         <motion.div

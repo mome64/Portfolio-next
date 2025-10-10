@@ -54,6 +54,13 @@ html,
 body {
   max-width: 100%;
   overflow-x: hidden;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
 }
 
 /* Custom styles for the portfolio */
@@ -78,12 +85,17 @@ body {
 
 /* Compact section for minimized spacing between components */
 .compact-section {
-  @apply py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto;
+  @apply py-8 sm:py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto;
 }
 
 /* Extra compact section for maximum space reduction */
 .extra-compact-section {
-  @apply py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto;
+  @apply py-6 sm:py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto;
+}
+
+/* Ultra compact section for mobile devices */
+.ultra-compact-section {
+  @apply py-4 sm:py-6 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto;
 }
 
 /* New standardized spacing system */
@@ -109,6 +121,44 @@ body {
 
 .xxl-spacing {
   @apply p-16;
+}
+
+/* Height utilities for better mobile responsiveness */
+.h-xs {
+  @apply h-4 sm:h-6;
+}
+
+.h-sm {
+  @apply h-8 sm:h-10;
+}
+
+.h-md {
+  @apply h-12 sm:h-16;
+}
+
+.h-lg {
+  @apply h-16 sm:h-20;
+}
+
+.h-xl {
+  @apply h-20 sm:h-24;
+}
+
+.h-auto-sm {
+  @apply h-auto sm:h-auto;
+}
+
+.min-h-screen-sm {
+  @apply min-h-[90vh] sm:min-h-screen;
+}
+
+/* Improved Hero section height handling */
+.min-h-hero {
+  @apply min-h-[calc(100vh-5rem)] sm:min-h-[calc(100vh-6rem)] md:min-h-screen;
+}
+
+.h-hero-auto {
+  @apply h-auto;
 }
 
 /* Responsive container with consistent padding */
@@ -145,7 +195,7 @@ body {
 
 .section-title::after {
   content: "";
-  @apply absolute bottom-[-12px] left-1/2 transform -translate-x-1/2 w-20 h-1 bg-primary rounded-full;
+  @apply absolute bottom-[-12px] left-[50%] transform -translate-x-[50%] w-20 h-1 bg-primary rounded-full;
 }
 
 .subtle-section-title {
@@ -154,7 +204,7 @@ body {
 
 .subtle-section-title::after {
   content: "";
-  @apply absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-16 h-1 bg-primary rounded-full;
+  @apply absolute bottom-[-10px] left-[50%] transform -translate-x-[50%] w-16 h-1 bg-primary rounded-full;
 }
 
 .component-title {
@@ -260,9 +310,223 @@ html {
   }
 }
 
+/* Additional responsive utilities for better mobile experience */
+.xs\:hidden {
+  @apply hidden;
+}
+
+@media (min-width: 475px) {
+  .xs\:hidden {
+    @apply block;
+  }
+}
+
+.xs\:inline {
+  @apply hidden;
+}
+
+@media (min-width: 475px) {
+  .xs\:inline {
+    @apply inline;
+  }
+}
+
+/* Extra small device utilities */
+.xs\:text-sm {
+  @apply text-xs;
+}
+
+@media (min-width: 475px) {
+  .xs\:text-sm {
+    @apply text-sm;
+  }
+}
+
+.xs\:p-5 {
+  @apply p-4;
+}
+
+@media (min-width: 475px) {
+  .xs\:p-5 {
+    @apply p-5;
+  }
+}
+
+.xs\:w-5\/6 {
+  @apply w-[91.66%];
+}
+
+@media (min-width: 475px) {
+  .xs\:w-5\/6 {
+    @apply w-[91.66%];
+  }
+}
+
+.xs\:max-w-sm {
+  @apply max-w-xs;
+}
+
+@media (min-width: 475px) {
+  .xs\:max-w-sm {
+    @apply max-w-sm;
+  }
+}
+
+.xs\:h-12 {
+  @apply h-10;
+}
+
+@media (min-width: 475px) {
+  .xs\:h-12 {
+    @apply h-12;
+  }
+}
+
+.xs\:w-12 {
+  @apply w-10;
+}
+
+@media (min-width: 475px) {
+  .xs\:w-12 {
+    @apply w-12;
+  }
+}
+
+.xs\:gap-3 {
+  @apply gap-2;
+}
+
+@media (min-width: 475px) {
+  .xs\:gap-3 {
+    @apply gap-3;
+  }
+}
+
+.xs\:mt-7 {
+  @apply mt-6;
+}
+
+@media (min-width: 475px) {
+  .xs\:mt-7 {
+    @apply mt-7;
+  }
+}
+
+.xs\:text-4xl {
+  @apply text-3xl;
+}
+
+@media (min-width: 475px) {
+  .xs\:text-4xl {
+    @apply text-4xl;
+  }
+}
+
+.xs\:text-base {
+  @apply text-sm;
+}
+
+@media (min-width: 475px) {
+  .xs\:text-base {
+    @apply text-base;
+  }
+}
+
+.xs\:w-2\.5 {
+  @apply w-2;
+}
+
+@media (min-width: 475px) {
+  .xs\:w-2\.5 {
+    @apply w-[0.625rem]; /* 2.5 in decimal form (10px) */
+  }
+}
+
+.xs\:h-2\.5 {
+  @apply h-2;
+}
+
+@media (min-width: 475px) {
+  .xs\:h-2\.5 {
+    @apply h-[0.625rem]; /* 2.5 in decimal form (10px) */
+  }
+}
+
+.xs\:space-x-2 {
+  @apply space-x-[0.375rem]; /* space-x-1.5 equivalent (6px) */
+}
+
+@media (min-width: 475px) {
+  .xs\:space-x-2 {
+    @apply space-x-2;
+  }
+}
+
+.xs\:p-2\.5 {
+  @apply p-2;
+}
+
+@media (min-width: 475px) {
+  .xs\:p-2\.5 {
+    @apply p-[0.625rem]; /* 2.5 in decimal form (10px) */
+  }
+}
+
+.xs\:w-24 {
+  @apply w-20;
+}
+
+@media (min-width: 475px) {
+  .xs\:w-24 {
+    @apply w-24;
+  }
+}
+
+.xs\:h-8 {
+  @apply h-6;
+}
+
+@media (min-width: 475px) {
+  .xs\:h-8 {
+    @apply h-8;
+  }
+}
+
+.xs\:mt-7 {
+  @apply mt-6;
+}
+
+@media (min-width: 475px) {
+  .xs\:mt-7 {
+    @apply mt-7;
+  }
+}
+
 /* Responsive grid adjustments */
 .grid-cols-responsive {
   @apply grid-cols-1 md:grid-cols-2 lg:grid-cols-3;
+}
+
+/* Responsive height adjustments for Hero section */
+.h-hero-mobile {
+  @apply h-48 sm:h-64 md:h-80;
+}
+
+.h-hero-desktop {
+  @apply h-64 md:h-80 lg:h-96;
+}
+
+.min-h-hero-mobile {
+  @apply min-h-[300px] sm:min-h-[400px] md:min-h-[500px];
+}
+
+.min-h-hero-desktop {
+  @apply min-h-[400px] md:min-h-[500px] lg:min-h-[600px];
+}
+
+/* Enhanced Hero height utilities */
+.min-h-hero-responsive {
+  @apply min-h-[85vh] sm:min-h-[90vh] md:min-h-screen;
 }
 
 /* Consistent border radius */
@@ -311,7 +575,7 @@ html {
 }
 
 .project-card-image {
-  @apply w-full h-48 object-cover transition-transform duration-500;
+  @apply w-full h-40 sm:h-48 object-cover transition-transform duration-500;
 }
 
 .project-card-overlay {
@@ -364,7 +628,7 @@ html {
 
 /* Enhanced project links */
 .project-link {
-  @apply flex items-center gap-2 font-medium text-sm transition-colors duration-300 transform hover:-translate-y-0.5;
+  @apply flex items-center gap-1.5 sm:gap-2 font-medium text-xs sm:text-sm transition-colors duration-300 transform hover:-translate-y-0.5;
 }
 
 .project-link-primary {
@@ -498,4 +762,64 @@ html {
   opacity: 0;
   transform: scale(0.9);
   transition: opacity 300ms, transform 300ms;
+}
+
+/* 3D perspective utilities for testimonial component */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.perspective-800 {
+  perspective: 800px;
+}
+
+.perspective-600 {
+  perspective: 600px;
+}
+
+@media (max-width: 767px) {
+  .perspective-1000 {
+    perspective: 600px;
+  }
+
+  .perspective-800 {
+    perspective: 500px;
+  }
+
+  .perspective-600 {
+    perspective: 400px;
+  }
+}
+
+/* Scrollbar hide utility */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  overflow: -moz-scrollbars-none; /* Older Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}
+
+/* Apply to all elements with scrollbar-hide class */
+* .scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+* .scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Mobile touch enhancement for testimonial cards */
+.touch-enhanced {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+  cursor: pointer;
 }

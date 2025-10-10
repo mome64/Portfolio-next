@@ -5,200 +5,188 @@ import PDFDocument from "pdfkit";
 
 export async function GET() {
   try {
-
     const doc = new PDFDocument({
       size: "A4",
       margins: { top: 50, bottom: 50, left: 50, right: 50 },
     });
 
-
     const publicDir = path.join(process.cwd(), "public");
     const filePath = path.join(publicDir, "Mohammed_Mesoud_Resume.pdf");
-
 
     if (!fs.existsSync(publicDir)) {
       fs.mkdirSync(publicDir, { recursive: true });
     }
 
-
     const writeStream = fs.createWriteStream(filePath);
     doc.pipe(writeStream);
 
+    // Header with gradient effect
+    const gradientTop = 150;
+    const gradientHeight = 40;
+    
+    // Create a gradient-like effect manually
+    for (let i = 0; i < gradientHeight; i++) {
+      const ratio = i / gradientHeight;
+      const r = Math.floor(255 * (1 - ratio) + 255 * ratio);
+      const g = Math.floor(127 * (1 - ratio) + 165 * ratio);
+      const b = Math.floor(0 * (1 - ratio) + 0 * ratio);
+      
+      doc
+        .strokeColor([r, g, b])
+        .lineWidth(1)
+        .moveTo(0, gradientTop + i)
+        .lineTo(600, gradientTop + i)
+        .stroke();
+    }
 
-    doc.fillColor("#ff7f00").fontSize(24).text("Mohammed Mesoud", 50, 50);
+    // Profile section
+    doc.fillColor("#ffffff").fontSize(28).text("Mohammed Mesoud", 50, 50);
+    doc.fillColor("#ffffff").fontSize(16).text("Senior Full Stack Developer", 50, 90);
 
-    doc
-      .fillColor("#000000")
-      .fontSize(14)
-      .text("Senior Full Stack Developer", 50, 80);
-
-
-    doc
-      .fontSize(10)
+    // Contact information
+    doc.fillColor("#ffffff").fontSize(12)
       .text("San Francisco, CA", 400, 50, { align: "right" })
       .text("hello@example.com", 400, 65, { align: "right" })
       .text("(123) 456-7890", 400, 80, { align: "right" })
-      .text("linkedin.com/in/mohammedmesoud", 400, 95, { align: "right" });
+      .text("linkedin.com/in/mohammedmesoud", 400, 95, { align: "right" })
+      .text("github.com/mome64", 400, 110, { align: "right" });
 
+    // Section separator
+    doc.moveTo(50, 140).lineTo(550, 140).lineWidth(3).strokeColor("#ff7f00").stroke();
 
-    doc
-      .moveTo(50, 120)
-      .lineTo(550, 120)
-      .lineWidth(2)
-      .strokeColor("#ff7f00")
-      .stroke();
-
-
-    doc.fillColor("#ff7f00").fontSize(16).text("Professional Summary", 50, 140);
-
-    doc
-      .fillColor("#000000")
-      .fontSize(10)
+    // Professional Summary
+    doc.fillColor("#ff7f00").fontSize(18).text("Professional Summary", 50, 160);
+    doc.fillColor("#333333").fontSize(11)
       .text(
         "Passionate Full Stack Developer with over 5 years of experience creating modern web applications. ",
         50,
-        170,
-        { continued: true }
+        190,
+        { continued: true, width: 500 }
       )
       .text(
         "Specializing in React, Next.js, and Node.js with a strong focus on user experience and performance. ",
-        50,
-        185,
         { continued: true }
       )
       .text(
         "Proven track record of delivering scalable solutions for enterprise clients.",
-        50,
-        200
-      );
-
-
-    doc.fillColor("#ff7f00").fontSize(16).text("Technical Skills", 50, 230);
-
-    doc
-      .fillColor("#000000")
-      .fontSize(10)
-      .text("• React", 50, 260)
-      .text("• Next.js", 50, 275)
-      .text("• JavaScript", 50, 290)
-      .text("• TypeScript", 50, 305)
-      .text("• Node.js", 50, 320)
-      .text("• Python", 50, 335)
-      .text("• MongoDB", 150, 260)
-      .text("• PostgreSQL", 150, 275)
-      .text("• AWS", 150, 290)
-      .text("• Docker", 150, 305)
-      .text("• Git", 150, 320)
-      .text("• UI/UX Design", 150, 335);
-
-
-    doc
-      .fillColor("#ff7f00")
-      .fontSize(16)
-      .text("Professional Experience", 50, 370);
-
-
-    doc
-      .fillColor("#000000")
-      .fontSize(12)
-      .text("Senior Full Stack Developer", 50, 400);
-
-    doc
-      .fillColor("#ff7f00")
-      .fontSize(11)
-      .text("Tech Innovations Inc.", 50, 415);
-
-    doc
-      .fillColor("#000000")
-      .fontSize(10)
-      .text("2020 - Present", 400, 400, { align: "right" })
-      .text(
-        "• Led development of scalable web applications using React, Node.js, and cloud technologies",
-        50,
-        435
-      )
-      .text(
-        "• Implemented microservices architecture reducing latency by 40%",
-        50,
-        450
-      )
-      .text(
-        "• Mentored junior developers and established CI/CD pipelines",
-        50,
-        465
-      );
-
-
-    doc.fillColor("#000000").fontSize(12).text("Frontend Developer", 50, 490);
-
-    doc
-      .fillColor("#ff7f00")
-      .fontSize(11)
-      .text("Digital Solutions Ltd.", 50, 505);
-
-    doc
-      .fillColor("#000000")
-      .fontSize(10)
-      .text("2018 - 2020", 400, 490, { align: "right" })
-      .text(
-        "• Developed responsive web applications for enterprise clients",
-        50,
-        525
-      )
-      .text(
-        "• Improved page load speed by 35% through optimization techniques",
-        50,
-        540
-      )
-      .text(
-        "• Collaborated with UX designers to implement pixel-perfect interfaces",
-        50,
-        555
-      );
-
-
-    doc.fillColor("#000000").fontSize(12).text("Web Developer", 50, 580);
-
-    doc.fillColor("#ff7f00").fontSize(11).text("Creative Web Agency", 50, 595);
-
-    doc
-      .fillColor("#000000")
-      .fontSize(10)
-      .text("2016 - 2018", 400, 580, { align: "right" })
-      .text(
-        "• Built custom websites and e-commerce solutions for small to medium businesses",
-        50,
-        615
-      )
-      .text("• Managed client relationships and project timelines", 50, 630);
-
-
-    doc.fillColor("#ff7f00").fontSize(16).text("Education", 50, 660);
-
-    doc
-      .fillColor("#000000")
-      .fontSize(12)
-      .text("Bachelor of Science in Computer Science", 50, 690);
-
-    doc
-      .fillColor("#ff7f00")
-      .fontSize(11)
-      .text("University of Technology", 50, 705);
-
-    doc
-      .fillColor("#000000")
-      .fontSize(10)
-      .text("2012 - 2016", 400, 690, { align: "right" })
-      .text(
-        'Specialized in web development and software engineering. Completed thesis on "Modern JavaScript Frameworks and Performance Optimization".',
-        50,
-        725,
         { width: 500 }
       );
 
+    // Technical Skills
+    doc.fillColor("#ff7f00").fontSize(18).text("Technical Skills", 50, 250);
+    
+    // Skills columns
+    const skillsLeft = [
+      "• React", "• Next.js", "• JavaScript", "• TypeScript", 
+      "• Node.js", "• Python", "• GraphQL"
+    ];
+    
+    const skillsRight = [
+      "• MongoDB", "• PostgreSQL", "• AWS", "• Docker", 
+      "• Git", "• UI/UX Design", "• Tailwind CSS"
+    ];
+    
+    doc.fillColor("#333333").fontSize(11);
+    
+    // Left column
+    skillsLeft.forEach((skill, index) => {
+      doc.text(skill, 50, 280 + (index * 15));
+    });
+    
+    // Right column
+    skillsRight.forEach((skill, index) => {
+      doc.text(skill, 180, 280 + (index * 15));
+    });
+
+    // Professional Experience
+    doc.fillColor("#ff7f00").fontSize(18).text("Professional Experience", 50, 420);
+
+    // Senior Full Stack Developer
+    doc.fillColor("#333333").fontSize(13).text("Senior Full Stack Developer", 50, 450);
+    doc.fillColor("#ff7f00").fontSize(12).text("Tech Innovations Inc.", 50, 465);
+    doc.fillColor("#333333").fontSize(11).text("2020 - Present", 400, 450, { align: "right" });
+    
+    const exp1Points = [
+      "• Led development of scalable web applications using React, Node.js, and cloud technologies",
+      "• Implemented microservices architecture reducing latency by 40%",
+      "• Mentored junior developers and established CI/CD pipelines"
+    ];
+    
+    exp1Points.forEach((point, index) => {
+      doc.text(point, 50, 485 + (index * 15), { width: 500 });
+    });
+
+    // Add page break
+    doc.addPage();
+    
+    // Frontend Developer (Page 2)
+    doc.fillColor("#333333").fontSize(13).text("Frontend Developer", 50, 50);
+    doc.fillColor("#ff7f00").fontSize(12).text("Digital Solutions Ltd.", 50, 65);
+    doc.fillColor("#333333").fontSize(11).text("2018 - 2020", 400, 50, { align: "right" });
+    
+    const exp2Points = [
+      "• Developed responsive web applications for enterprise clients",
+      "• Improved page load speed by 35% through optimization techniques",
+      "• Collaborated with UX designers to implement pixel-perfect interfaces"
+    ];
+    
+    exp2Points.forEach((point, index) => {
+      doc.text(point, 50, 85 + (index * 15), { width: 500 });
+    });
+
+    // Web Developer
+    doc.fillColor("#333333").fontSize(13).text("Web Developer", 50, 150);
+    doc.fillColor("#ff7f00").fontSize(12).text("Creative Web Agency", 50, 165);
+    doc.fillColor("#333333").fontSize(11).text("2016 - 2018", 400, 150, { align: "right" });
+    
+    const exp3Points = [
+      "• Built custom websites and e-commerce solutions for small to medium businesses",
+      "• Managed client relationships and project timelines"
+    ];
+    
+    exp3Points.forEach((point, index) => {
+      doc.text(point, 50, 185 + (index * 15), { width: 500 });
+    });
+
+    // Education
+    doc.fillColor("#ff7f00").fontSize(18).text("Education", 50, 230);
+    doc.fillColor("#333333").fontSize(13).text("Bachelor of Science in Computer Science", 50, 260);
+    doc.fillColor("#ff7f00").fontSize(12).text("University of Technology", 50, 275);
+    doc.fillColor("#333333").fontSize(11).text("2012 - 2016", 400, 260, { align: "right" });
+    doc.text(
+      'Specialized in web development and software engineering. Completed thesis on "Modern JavaScript Frameworks and Performance Optimization".',
+      50,
+      295,
+      { width: 500 }
+    );
+
+    // Projects Section
+    doc.fillColor("#ff7f00").fontSize(18).text("Key Projects", 50, 350);
+    
+    // Project 1
+    doc.fillColor("#333333").fontSize(13).text("E-Commerce Platform", 50, 380);
+    doc.fillColor("#ff7f00").fontSize(11).text("React, Node.js, MongoDB", 50, 395);
+    doc.fillColor("#333333").fontSize(11).text(
+      "Full-featured e-commerce solution with payment integration, user authentication, and admin dashboard.",
+      50,
+      410,
+      { width: 500 }
+    );
+
+    // Project 2
+    doc.fillColor("#333333").fontSize(13).text("Task Management App", 50, 440);
+    doc.fillColor("#ff7f00").fontSize(11).text("Next.js, TypeScript, PostgreSQL", 50, 455);
+    doc.fillColor("#333333").fontSize(11).text(
+      "Collaborative task management application with real-time updates and team features.",
+      50,
+      470,
+      { width: 500 }
+    );
+
+    // Footer with page number
+    doc.fillColor("#999999").fontSize(10).text("Page 2", 500, 750);
 
     doc.end();
-
 
     await new Promise((resolve, reject) => {
       writeStream.on("finish", resolve);

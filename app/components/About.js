@@ -347,14 +347,13 @@ const About = () => {
           </div>
 
           <div className="flex flex-col gap-4">
-            <a
-              href="/Mohammed_Mesoud_Resume.pdf"
+            <Link
+              href="/cv"
               className="portfolio-btn portfolio-btn-primary flex items-center justify-center gap-3 group shadow-lg hover:shadow-xl text-lg w-full py-3"
-              download
               style={{ fontFamily: "var(--font-jetbrains-mono)" }}
             >
-              <FiDownload className="group-hover:animate-bounce" /> Download CV
-            </a>
+              <FiDownload className="group-hover:animate-bounce" /> View CV
+            </Link>
             <a
               href="#contact"
               className="portfolio-btn portfolio-btn-secondary flex items-center justify-center gap-3 group text-lg w-full py-3"
