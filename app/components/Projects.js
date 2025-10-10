@@ -13,93 +13,96 @@ import ProjectModal from "./ProjectModal"; // Added missing import
 import Image from "next/image";
 
 const Projects = ({ isVisible = true }) => {
-  const allProjects = [
-    {
-      id: 1,
-      title: "Football Live Application",
-      description:
-        "A full-stack football application with real-time features including live match updates, chat system, and fan engagement tools. A professional portfolio website built with modern web technologies including React, Next.js, Tailwind CSS, and Framer Motion. Features responsive design, smooth animations, and optimized performance for showcasing projects and skills.",
-      image: "/images/full-stack.png",
-      tech: ["React", "Next.js", "Tailwind CSS", "Framer Motion"],
-      liveUrl: "https://ethiogoal.com",
-      githubUrl: "https://github.com/mome64/full-stack",
-      category: "Full Stack",
-      features: [
-        "Real-time match updates with WebSocket integration",
-        "Interactive chat system for fan engagement",
-        "Responsive design for all device sizes",
-        "User authentication and profile management",
-      ],
-    },
-    {
-      id: 2,
-      title: "PAMS Project",
-      description:
-        "A full-stack web application with user authentication, data management, and RESTful API integration. Built with React frontend and Node.js backend, featuring a dating site functionality with user profiles and matching capabilities.",
-      image: "/images/pams.png",
-      tech: ["React", "Node.js", "Express", "MongoDB"],
-      liveUrl: "#",
-      githubUrl: "https://github.com/mome64/pams",
-      category: "Full Stack",
-      features: [
-        "User authentication with JWT tokens",
-        "Profile creation and management system",
-        "Advanced matching algorithm",
-        "Real-time messaging capabilities",
-      ],
-    },
-    {
-      id: 3,
-      title: "Pizza App",
-      description:
-        "A mobile application for food ordering with cart functionality and user-friendly interface. Developed using React Native for cross-platform compatibility, allowing users to browse menu items, customize orders, and place deliveries.",
-      image: "/images/pizzaApp.jpg",
-      tech: ["React Native", "JavaScript", "Context API"],
-      liveUrl: "#",
-      githubUrl: "https://github.com/mome64/react-vite-pizza",
-      category: "Frontend",
-      features: [
-        "Intuitive menu browsing with category filters",
-        "Customizable pizza builder with real-time pricing",
-        "Shopping cart with item management",
-        "Order tracking and delivery status updates",
-      ],
-    },
-    {
-      id: 4,
-      title: "Weather App",
-      description:
-        "A responsive weather application that displays current conditions and forecasts with an intuitive user interface. Integrates with weather APIs to provide accurate and up-to-date meteorological information for any location.",
-      image: "/images/weather.jpg",
-      tech: ["React", "CSS", "HTML", "JavaScript"],
-      liveUrl: "#",
-      githubUrl: "https://github.com/mome64/Weather",
-      category: "Frontend",
-      features: [
-        "5-day weather forecast with hourly details",
-        "Location-based weather using geolocation API",
-        "Interactive maps with weather overlays",
-        "Customizable units (Celsius/Fahrenheit)",
-      ],
-    },
-    {
-      id: 5,
-      title: "Tip Calculator",
-      description:
-        "A practical web application that helps users quickly calculate tip amounts and total bills. Features an intuitive interface with customizable tip percentages and supports multiple people splitting the bill.",
-      image: "/images/tipCalculator.jpg",
-      tech: ["HTML", "CSS", "JavaScript"],
-      liveUrl: "#",
-      githubUrl: "https://github.com/mome64/tip-calculate",
-      category: "Frontend",
-      features: [
-        "Customizable tip percentages",
-        "Bill splitting for multiple people",
-        "Real-time calculation updates",
-        "Responsive design for all devices",
-      ],
-    },
-  ];
+  const allProjects = useMemo(
+    () => [
+      {
+        id: 1,
+        title: "Football Live Application",
+        description:
+          "A full-stack football application with real-time features including live match updates, chat system, and fan engagement tools. A professional portfolio website built with modern web technologies including React, Next.js, Tailwind CSS, and Framer Motion. Features responsive design, smooth animations, and optimized performance for showcasing projects and skills.",
+        image: "/images/full-stack.png",
+        tech: ["React", "Next.js", "Tailwind CSS", "Framer Motion"],
+        liveUrl: "https://ethiogoal.com",
+        githubUrl: "https://github.com/mome64/full-stack",
+        category: "Full Stack",
+        features: [
+          "Real-time match updates with WebSocket integration",
+          "Interactive chat system for fan engagement",
+          "Responsive design for all device sizes",
+          "User authentication and profile management",
+        ],
+      },
+      {
+        id: 2,
+        title: "PAMS Project",
+        description:
+          "A full-stack web application with user authentication, data management, and RESTful API integration. Built with React frontend and Node.js backend, featuring a dating site functionality with user profiles and matching capabilities.",
+        image: "/images/pams.png",
+        tech: ["React", "Node.js", "Express", "MongoDB"],
+        liveUrl: "#",
+        githubUrl: "https://github.com/mome64/pams",
+        category: "Full Stack",
+        features: [
+          "User authentication with JWT tokens",
+          "Profile creation and management system",
+          "Advanced matching algorithm",
+          "Real-time messaging capabilities",
+        ],
+      },
+      {
+        id: 3,
+        title: "Pizza App",
+        description:
+          "A mobile application for food ordering with cart functionality and user-friendly interface. Developed using React Native for cross-platform compatibility, allowing users to browse menu items, customize orders, and place deliveries.",
+        image: "/images/pizzaApp.jpg",
+        tech: ["React Native", "JavaScript", "Context API"],
+        liveUrl: "#",
+        githubUrl: "https://github.com/mome64/react-vite-pizza",
+        category: "Frontend",
+        features: [
+          "Intuitive menu browsing with category filters",
+          "Customizable pizza builder with real-time pricing",
+          "Shopping cart with item management",
+          "Order tracking and delivery status updates",
+        ],
+      },
+      {
+        id: 4,
+        title: "Weather App",
+        description:
+          "A responsive weather application that displays current conditions and forecasts with an intuitive user interface. Integrates with weather APIs to provide accurate and up-to-date meteorological information for any location.",
+        image: "/images/weather.jpg",
+        tech: ["React", "CSS", "HTML", "JavaScript"],
+        liveUrl: "#",
+        githubUrl: "https://github.com/mome64/Weather",
+        category: "Frontend",
+        features: [
+          "5-day weather forecast with hourly details",
+          "Location-based weather using geolocation API",
+          "Interactive maps with weather overlays",
+          "Customizable units (Celsius/Fahrenheit)",
+        ],
+      },
+      {
+        id: 5,
+        title: "Tip Calculator",
+        description:
+          "A practical web application that helps users quickly calculate tip amounts and total bills. Features an intuitive interface with customizable tip percentages and supports multiple people splitting the bill.",
+        image: "/images/tipCalculator.jpg",
+        tech: ["HTML", "CSS", "JavaScript"],
+        liveUrl: "#",
+        githubUrl: "https://github.com/mome64/tip-calculate",
+        category: "Frontend",
+        features: [
+          "Customizable tip percentages",
+          "Bill splitting for multiple people",
+          "Real-time calculation updates",
+          "Responsive design for all devices",
+        ],
+      },
+    ],
+    []
+  );
 
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedProject, setSelectedProject] = useState(null);
@@ -126,7 +129,7 @@ const Projects = ({ isVisible = true }) => {
   ];
 
   // Wrap allProjects in useMemo to prevent it from changing on every render
-  const projects = useMemo(() => allProjects, []);
+  const projects = useMemo(() => allProjects, [allProjects]);
 
   // Improved filtering with useMemo for better performance
   const filteredProjects = useMemo(() => {

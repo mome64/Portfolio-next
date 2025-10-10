@@ -429,7 +429,8 @@ const Contact = () => {
                     <div className="text-left">
                       <h4 className="font-bold">Message Sent Successfully!</h4>
                       <p className="text-sm mt-1">
-                        Thank you for reaching out. I'll get back to you soon.
+                        Thank you for reaching out. I&#39;ll get back to you
+                        soon.
                       </p>
                     </div>
                   </motion.div>

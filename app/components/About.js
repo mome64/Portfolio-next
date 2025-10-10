@@ -385,7 +385,7 @@ const About = () => {
               variants={itemVariants}
               className="text-body text-foreground/80 text-sm sm:text-base"
             >
-              I'm a passionate Full Stack Developer with over 3 years of
+              I&#39;m a passionate Full Stack Developer with over 3 years of
               experience creating modern web applications. I specialize in
               React, Next.js, and Node.js, and I love turning complex problems
               into simple, beautiful designs.
@@ -397,9 +397,9 @@ const About = () => {
             >
               My approach combines technical expertise with an eye for design,
               ensuring that every project I work on is not only functional but
-              also visually appealing and user-friendly. I'm constantly learning
-              new technologies and methodologies to stay at the forefront of web
-              development.
+              also visually appealing and user-friendly. I&#39;m constantly
+              learning new technologies and methodologies to stay at the
+              forefront of web development.
             </motion.p>
           </motion.div>
 
