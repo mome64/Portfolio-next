@@ -16,6 +16,23 @@ const Projects = ({ isVisible = true }) => {
   const allProjects = useMemo(
     () => [
       {
+        id: 0,
+        title: "AI Model Compete",
+        description:
+          "A web platform where users can test, compare, and evaluate different AI models. Built with React and integrated with APIs for real-time model performance metrics, allowing users to submit data and see model results side by side.",
+        image: "/images/aiModelCompete.png",
+        tech: ["Next.js", "JavaScript", "Node.js", "API Integration"],
+        liveUrl: "https://ai-model-compete.vercel.app",
+        githubUrl: "https://github.com/mome64/ai-model-compete",
+        category: "Frontend",
+        features: [
+          "Compare multiple AI models with performance metrics",
+          "Submit custom input and receive real-time results",
+          "Interactive UI for model evaluation and ranking",
+          "Save and track previous model comparisons",
+        ],
+      },
+      {
         id: 1,
         title: "Football Live Application",
         description:
@@ -30,6 +47,23 @@ const Projects = ({ isVisible = true }) => {
           "Interactive chat system for fan engagement",
           "Responsive design for all device sizes",
           "User authentication and profile management",
+        ],
+      },
+      {
+        id: 5,
+        title: "Next.js Admin Dashboard",
+        description:
+          "A modern admin dashboard built with Next.js and Tailwind CSS, providing an intuitive interface for managing users, analytics, orders, and other business data. Designed for responsive performance and ease of use.",
+        image: "/images/adminDashboard.png",
+        tech: ["Next.js", "React", "Tailwind CSS", "JavaScript"],
+        liveUrl: "https://nextjs-admin-dashboard-main-sigma.vercel.app/",
+        githubUrl: "https://github.com/mome64/nextjs-admin-dashboard",
+        category: "Frontend",
+        features: [
+          "Responsive dashboard layout with sidebar navigation",
+          "Analytics charts and data visualization components",
+          "User and order management panels",
+          "Interactive UI with modals, tables, and cards",
         ],
       },
       {
@@ -50,6 +84,23 @@ const Projects = ({ isVisible = true }) => {
         ],
       },
       {
+        id: 6,
+        title: "3D Bike Demo",
+        description:
+          "An interactive 3D bike model demo built with Three.js, showcasing realistic rendering, animations, and user-controlled camera interactions. Users can rotate, zoom, and explore the bike in a web environment.",
+        image: "/images/bikeDemo.png",
+        tech: ["Three.js", "JavaScript", "WebGL", "GSAP"],
+        liveUrl: "https://bike-demo-threejs-main-rho.vercel.app/",
+        githubUrl: "https://github.com/mome64/bike-demo-threejs",
+        category: "Frontend",
+        features: [
+          "Fully interactive 3D bike model",
+          "Camera controls: rotate, zoom, and pan",
+          "Smooth animations with GSAP integration",
+          "High-quality WebGL rendering for realistic visuals",
+        ],
+      },
+      {
         id: 3,
         title: "Pizza App",
         description:
@@ -64,40 +115,6 @@ const Projects = ({ isVisible = true }) => {
           "Customizable pizza builder with real-time pricing",
           "Shopping cart with item management",
           "Order tracking and delivery status updates",
-        ],
-      },
-      {
-        id: 4,
-        title: "Weather App",
-        description:
-          "A responsive weather application that displays current conditions and forecasts with an intuitive user interface. Integrates with weather APIs to provide accurate and up-to-date meteorological information for any location.",
-        image: "/images/weather.jpg",
-        tech: ["React", "CSS", "HTML", "JavaScript"],
-        liveUrl: "#",
-        githubUrl: "https://github.com/mome64/Weather",
-        category: "Frontend",
-        features: [
-          "5-day weather forecast with hourly details",
-          "Location-based weather using geolocation API",
-          "Interactive maps with weather overlays",
-          "Customizable units (Celsius/Fahrenheit)",
-        ],
-      },
-      {
-        id: 5,
-        title: "Tip Calculator",
-        description:
-          "A practical web application that helps users quickly calculate tip amounts and total bills. Features an intuitive interface with customizable tip percentages and supports multiple people splitting the bill.",
-        image: "/images/tipCalculator.jpg",
-        tech: ["HTML", "CSS", "JavaScript"],
-        liveUrl: "#",
-        githubUrl: "https://github.com/mome64/tip-calculate",
-        category: "Frontend",
-        features: [
-          "Customizable tip percentages",
-          "Bill splitting for multiple people",
-          "Real-time calculation updates",
-          "Responsive design for all devices",
         ],
       },
     ],
