@@ -69,6 +69,12 @@ const About = () => {
       category: "backend",
     },
     {
+  name: "React Native",
+  level: 90,
+  icon: <SiReact className="text-[#61DAFB]" />,
+  category: "mobile",
+},
+    {
       name: "MongoDB",
       level: 80,
       icon: <SiMongodb className="text-[#47A248]" />,
